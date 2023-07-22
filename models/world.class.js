@@ -16,7 +16,6 @@ class World {
         this.ctx = canvas.getContext('2d');
         this.canvas = canvas;
         this.keyboard = keyboard;
-        this.coins = Coin.createCoins();
         this.draw();
         this.setWorld();
         this.run();
@@ -42,7 +41,23 @@ class World {
         }
     }
 
-    checkCollisions() {
+    // checkCollisions() {
+    //     this.level.enemies.forEach((enemy) => {
+    //         if(this.character.isColliding(enemy)) {
+    //             this.character.hit();
+    //             this.statusBarHealth.setPercentage(this.character.energy);
+    //         }
+    //     });
+    // }
+
+
+    checkCollisions() {  
+            this.enemyCollision();
+            // this.coinCollision();
+
+    }
+
+    enemyCollision() {
         this.level.enemies.forEach((enemy) => {
             if(this.character.isColliding(enemy)) {
                 this.character.hit();
@@ -51,14 +66,16 @@ class World {
         });
     }
 
-    checkCollisionsWithCoins() {
-        this.level.enemies.forEach((enemy) => {
-            if(this.character.isColliding(enemy)) {
-                this.character.hit();
-                this.statusBarHealth.setPercentage(this.character.energy);
+    coinCollision() {
+        this.level.coins.forEach((coin, index) => {
+            if(this.character.isColliding(coin)) {
+                this.character.collect();
+                this.statusCoin.setPercentage(this.character.coins);
+                this.level.coins.splice(index, 1);
             }
         });
     }
+
 
 
     draw() {
@@ -78,8 +95,7 @@ class World {
         this.addObjectsToMap(this.level.enemies); 
         this.addObjectsToMap(this.level.clouds);
         this.addObjectsToMap(this.throwableObjects);
-        this.coins.forEach(coin => coin.draw(this.ctx));
-
+ 
 
         this.ctx.translate(-this.camera_x, 0);
 
