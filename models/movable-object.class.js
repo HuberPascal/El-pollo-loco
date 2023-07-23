@@ -4,6 +4,7 @@ class MovableObject extends DrawableObject {
     speedY = 0;
     acceleration = 2.5;
     energy = 100;
+    coins = 0;
     lastHit = 0;
 
 
@@ -42,8 +43,8 @@ class MovableObject extends DrawableObject {
     }
 
     collectCoin() {
-        collect_coin.play();
-        this.coins += 20;
+        // collect_coin.play();
+        this.coins += 10;
         if(this.coins > 100) {
             this.coins = 100;
         }
@@ -62,10 +63,10 @@ class MovableObject extends DrawableObject {
 
 
     playAnimation(images) {
-            let i = this.currentImage % images.length; // let i = 7 % 6; => 1, Rest 1
-            let path = images[i];
-            this.img = this.imageCache[path];
-            this.currentImage++; // Inkrementierung von currentImage hinzugefügt
+        let i = this.currentImage % images.length; // let i = 7 % 6; => 1, Rest 1
+        let path = images[i];
+        this.img = this.imageCache[path];
+        this.currentImage++; // Inkrementierung von currentImage hinzugefügt
     }
 
 

@@ -19,6 +19,7 @@ class World {
         this.draw();
         this.setWorld();
         this.run();
+        this.checkCollisions();
     }
 
     setWorld() {
@@ -41,19 +42,10 @@ class World {
         }
     }
 
-    // checkCollisions() {
-    //     this.level.enemies.forEach((enemy) => {
-    //         if(this.character.isColliding(enemy)) {
-    //             this.character.hit();
-    //             this.statusBarHealth.setPercentage(this.character.energy);
-    //         }
-    //     });
-    // }
-
 
     checkCollisions() {  
             this.enemyCollision();
-            // this.coinCollision();
+            this.coinCollision();
 
     }
 
@@ -66,16 +58,16 @@ class World {
         });
     }
 
-    coinCollision() {
+    coinCollision() { 
         this.level.coins.forEach((coin, index) => {
             if(this.character.isColliding(coin)) {
-                this.character.collect();
-                this.statusCoin.setPercentage(this.character.coins);
+                this.character.collectCoin();
+                this.statusBarCoin.setPercentage(this.character.coins);
                 this.level.coins.splice(index, 1);
             }
         });
     }
-
+ 
 
 
     draw() {
@@ -94,6 +86,7 @@ class World {
         this.addToMap(this.character); 
         this.addObjectsToMap(this.level.enemies); 
         this.addObjectsToMap(this.level.clouds);
+        this.addObjectsToMap(this.level.coins);
         this.addObjectsToMap(this.throwableObjects);
  
 
