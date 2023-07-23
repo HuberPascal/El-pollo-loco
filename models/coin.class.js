@@ -1,33 +1,32 @@
 class Coin extends MovableObject {
+    y = 310;
+    x = 200;
 
+    offset = {
+        top: 20,
+        bottom: 30,
+        left: 40,
+        right: 40
+    };
 
-
-    // static createCoins() {
-    //     let coins = [];
-
-    //     let coin1 = new Coin(500, 330);
-    //     coins.push(coin1);
-
-    //     let coin2 = new Coin(550, 300);
-    //     coins.push(coin2);
-
-    //     let coin3 = new Coin(600, 300);
-    //     coins.push(coin3);
-
-    //     let coin4 = new Coin(600, 300);
-    //     coins.push(coin4);
-
-    //     let coin5 = new Coin(600, 300);
-    //     coins.push(coin5);
-
-    //     return coins;
-    // }
+    IMAGES_COIN = [
+        'img/8_coin/coin_1.png',
+        'img/8_coin/coin_2.png'
+    ];
 
     constructor(x, y) {
-        super().loadImage('img/7_statusbars/3_icons/icon_coin.png');
-        this.x = x;
-        this.y = y;
-        this.width = 60;
-        this.height = 60;
+        super().loadImage(this.IMAGES_COIN[0]);
+        this.loadImages(this.IMAGES_COIN);
+        this.x = x + Math.random() * 500;
+        this.y = y + Math.random() * 200;
+        this.animate();
+        this.width = 100;
+        this.height = 100;
+    }
+
+    animate() {
+        setInterval(() => {
+            this.playAnimation(this.IMAGES_COIN);
+          }, 500);
     }
 }

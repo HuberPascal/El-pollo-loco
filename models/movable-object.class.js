@@ -25,11 +25,11 @@ class MovableObject extends DrawableObject {
     }
 
     // isColliding(Chicken);
-    isColliding(mo) {
-        return this.x + this.width > mo.x &&
-            this.y + this.height > mo.y &&
-            this.x < mo.x &&
-            this.y < mo.y + mo.height
+    isColliding(object) {
+        return  this.x + this.width - this.offset.right > object.x &&
+                this.y + this.height - this.offset.bottom > object.y + object.offset.top &&
+                this.x + this.offset.left < object.x + object.width - object.offset.right &&
+                this.y + this.offset.top < object.y + object.height - object.offset.bottom
     }
 
     hit() {
@@ -38,6 +38,14 @@ class MovableObject extends DrawableObject {
             this.energy = 0;
         } else {
             this.lastHit = new Date().getTime();
+        }
+    }
+
+    collectCoin() {
+        collect_coin.play();
+        this.coins += 20;
+        if(this.coins > 100) {
+            this.coins = 100;
         }
     }
  
