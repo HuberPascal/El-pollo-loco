@@ -9,6 +9,7 @@ class World {
     statusBarBottles = new StatusBarBottle();
     statusBarCoin = new StatusBarCoin();
     coin = new Coin();
+    salsaBottle = new SalsaBottle();
     throwableObjects = [];
 
 
@@ -46,7 +47,7 @@ class World {
     checkCollisions() {  
             this.enemyCollision();
             this.coinCollision();
-
+            this.salsaBottleCollision();
     }
 
     enemyCollision() {
@@ -67,8 +68,17 @@ class World {
             }
         });
     }
- 
 
+    salsaBottleCollision() {
+        this.level.salsaBottles.forEach((salsaBottle, index) => {
+            if(this.character.isColliding(salsaBottle)) {
+                this.character.collectSalsaBottle();
+                this.statusBarBottles.setPercentage(this.character.salsaBottles);
+                this.level.salsaBottles.splice(index, 1);
+            }
+        });
+    }
+ 
 
     draw() {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
@@ -79,14 +89,15 @@ class World {
         this.ctx.translate(-this.camera_x, 0);
         // ------ Space for fixed objects ------
         this.addToMap(this.statusBarHealth);
-        this.addToMap(this.statusBarBottles);
         this.addToMap(this.statusBarCoin);
+        this.addToMap(this.statusBarBottles);
         this.ctx.translate(this.camera_x, 0);
         
         this.addToMap(this.character); 
         this.addObjectsToMap(this.level.enemies); 
         this.addObjectsToMap(this.level.clouds);
         this.addObjectsToMap(this.level.coins);
+        this.addObjectsToMap(this.level.salsaBottles);
         this.addObjectsToMap(this.throwableObjects);
  
 

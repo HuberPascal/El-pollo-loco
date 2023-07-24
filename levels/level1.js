@@ -32,7 +32,13 @@ const level1 = new Level(
         new Endboss()
     ],
     [
-        new Cloud()
+        new Cloud(100),
+        new Cloud(550),
+        new Cloud(1000),
+        new Cloud(1450),
+        new Cloud(1900),
+        new Cloud(2350),
+        new Cloud(2800)
     ],
     [
         new Coin(300, 100),
@@ -46,6 +52,10 @@ const level1 = new Level(
         // new Coin(500, 200)
     ],
     [
-        console.log('fe')
-    ],
+        new SalsaBottle(300),
+        new SalsaBottle(300),
+        new SalsaBottle(350),
+        new SalsaBottle(400),
+        new SalsaBottle(500),
+    ]
     );

@@ -5,6 +5,7 @@ class MovableObject extends DrawableObject {
     acceleration = 2.5;
     energy = 100;
     coins = 0;
+    salsaBottles = 0;
     lastHit = 0;
 
 
@@ -49,6 +50,15 @@ class MovableObject extends DrawableObject {
             this.coins = 100;
         }
     }
+
+    collectSalsaBottle() {
+        // collect_SalsaBottle.play();
+        this.salsaBottles += 20;
+        console.log('bottles gleich', this.salsaBottle);
+        if(this.salsaBottles > 100) {
+            this.salsaBottles = 100;
+        }
+    }
  
     isHurt() {
         let timepassed = new Date().getTime() - this.lastHit; // Differenz in ms
@@ -77,6 +87,12 @@ class MovableObject extends DrawableObject {
 
     moveLeft() {
             this.x -= this.speed;
+    }
+
+    moveLeftClouds() {
+        setInterval(() => {
+            this.x -= 0.15;
+        }, 1000 / 60);
     }
     
 

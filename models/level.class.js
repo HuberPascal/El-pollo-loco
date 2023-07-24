@@ -3,14 +3,14 @@ class Level {
     enemies;
     clouds;
     coins;
-    SalsaBottle;
+    salsaBottles;
     level_end_x = 2200;
 
-    constructor(BackgroundObjects, enemies, clouds, coins, SalsaBottle) {
+    constructor(BackgroundObjects, enemies, clouds, coins, salsaBottles) {
         this.BackgroundObjects = BackgroundObjects;
         this.enemies = enemies;
         this.clouds = clouds;
         this.coins = coins;
-        this.SalsaBottle = SalsaBottle;
+        this.salsaBottles = salsaBottles;
     }
 }
