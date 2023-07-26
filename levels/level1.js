@@ -54,8 +54,10 @@ const level1 = new Level(
     [
         new SalsaBottle(300),
         new SalsaBottle(300),
-        new SalsaBottle(350),
         new SalsaBottle(400),
         new SalsaBottle(500),
+        new SalsaBottle(600),
+        new SalsaBottle(700),
+        new SalsaBottle(800),
     ]
     );

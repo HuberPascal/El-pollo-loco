@@ -11,6 +11,8 @@ class World {
     coin = new Coin();
     salsaBottle = new SalsaBottle();
     throwableObjects = [];
+    salsaBottles = 0;
+    salsaBottleCounter = 0;
 
 
     constructor(canvas, keyboard) {
@@ -21,6 +23,7 @@ class World {
         this.setWorld();
         this.run();
         this.checkCollisions();
+        this.checkBottleIsSmashed();
     }
 
     setWorld() {
@@ -32,12 +35,36 @@ class World {
 
             this.checkCollisions();
             this.checkThrowObjects();
-        }, 200);
+        }, 100);
     }
 
 
+
+
+
+    // checkBottleIsSmashed() {
+    //     this.throwableBottles.forEach((bottle) => {
+    //       if (this.bottleCollides(bottle)) {
+    //         // this.clearBottle(bottle);
+    //       }
+    //     });
+    //   }
+
+    // bottleCollides() {
+    //     return bottle.hitGround();
+    // }
+
+
+
+
+
+
     checkThrowObjects() {
-        if(this.keyboard.D) {
+        if(this.keyboard.D && this.salsaBottleCounter > 0) {
+            this.salsaBottleCounter = this.salsaBottleCounter;
+            this.salsaBottleCounter--;
+            this.salsaBottles -= 20;
+            this.statusBarBottles.setPercentage(this.salsaBottles);
             let bottle = new TrowableObject(this.character.x + 100, this.character.y + 100);
             this.throwableObjects.push(bottle);
         }
@@ -70,13 +97,15 @@ class World {
     }
 
     salsaBottleCollision() {
-        this.level.salsaBottles.forEach((salsaBottle, index) => {
-            if(this.character.isColliding(salsaBottle)) {
-                this.character.collectSalsaBottle();
-                this.statusBarBottles.setPercentage(this.character.salsaBottles);
-                this.level.salsaBottles.splice(index, 1);
-            }
-        });
+        if(this.salsaBottles < 100) {
+            this.level.salsaBottles.forEach((salsaBottle, index) => {
+                if(this.character.isColliding(salsaBottle)) {
+                    this.character.collectSalsaBottle();
+                    this.statusBarBottles.setPercentage(this.salsaBottles);
+                    this.level.salsaBottles.splice(index, 1);
+                }
+            });
+        }
     }
  
 
@@ -85,9 +114,11 @@ class World {
 
         this.ctx.translate(this.camera_x, 0);
         this.addObjectsToMap(this.level.BackgroundObjects);
+        this.addObjectsToMap(this.level.clouds);
 
         this.ctx.translate(-this.camera_x, 0);
         // ------ Space for fixed objects ------
+       
         this.addToMap(this.statusBarHealth);
         this.addToMap(this.statusBarCoin);
         this.addToMap(this.statusBarBottles);
@@ -95,7 +126,6 @@ class World {
         
         this.addToMap(this.character); 
         this.addObjectsToMap(this.level.enemies); 
-        this.addObjectsToMap(this.level.clouds);
         this.addObjectsToMap(this.level.coins);
         this.addObjectsToMap(this.level.salsaBottles);
         this.addObjectsToMap(this.throwableObjects);
@@ -140,4 +170,6 @@ class World {
         mo.x = mo.x * -1;
         this.ctx.restore();
     }
+
+
 }

@@ -5,8 +5,9 @@ class MovableObject extends DrawableObject {
     acceleration = 2.5;
     energy = 100;
     coins = 0;
-    salsaBottles = 0;
     lastHit = 0;
+    
+
 
 
     applyGravity() {
@@ -51,15 +52,27 @@ class MovableObject extends DrawableObject {
         }
     }
 
+    salsaBottlesCounter() {
+        // this.salsaBottleCounter++;
+        // this.bottles.push(this.salsaBottleCounter);
+        // console.log('ich habe bottles hinzugefügt', this.bottles);
+        // console.log('bottles gleich', this.salsaBottle);
+    }
+
+
+
     collectSalsaBottle() {
         // collect_SalsaBottle.play();
-        this.salsaBottles += 20;
-        console.log('bottles gleich', this.salsaBottle);
+        this.world.salsaBottles += 20;
+        this.world.salsaBottleCounter++;
+        console.log('bottles gleich', this.world.salsaBottleCounter);
         if(this.salsaBottles > 100) {
             this.salsaBottles = 100;
         }
     }
+
  
+
     isHurt() {
         let timepassed = new Date().getTime() - this.lastHit; // Differenz in ms
         timepassed = timepassed / 1000; // Differenz in s
@@ -70,6 +83,10 @@ class MovableObject extends DrawableObject {
     isDead(){
         return this.energy == 0;
     }
+
+    // isGround() {
+    //     return this.y = 150;
+    // }
 
 
     playAnimation(images) {
