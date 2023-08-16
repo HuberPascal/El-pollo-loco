@@ -6,6 +6,7 @@ class MovableObject extends DrawableObject {
     energy = 100;
     coins = 0;
     lastHit = 0;
+    lastAction;
     
 
 
@@ -23,17 +24,21 @@ class MovableObject extends DrawableObject {
         if(this instanceof TrowableObject) { // TrowableObject should always fall
             return true;
         } else {
-        return this.y < 120;
+        return this.y < 130;
         }
     }
 
-    // isColliding(Chicken);
+    // isColliding(z.B Chicken);
     isColliding(object) {
-        return  this.x + this.width - this.offset.right > object.x &&
+        return  this.x + this.width - this.offset.right > object.x && object.offset.left &&
                 this.y + this.height - this.offset.bottom > object.y + object.offset.top &&
                 this.x + this.offset.left < object.x + object.width - object.offset.right &&
                 this.y + this.offset.top < object.y + object.height - object.offset.bottom
     }
+
+    // isCollidingTop(object) {
+    //     return 
+    // }
 
     hit() {
         this.energy -= 5;
@@ -41,8 +46,11 @@ class MovableObject extends DrawableObject {
             this.energy = 0;
         } else {
             this.lastHit = new Date().getTime();
+            this.lastAction = new Date().getTime();
         }
     }
+
+
 
     collectCoin() {
         // collect_coin.play();
@@ -51,14 +59,6 @@ class MovableObject extends DrawableObject {
             this.coins = 100;
         }
     }
-
-    salsaBottlesCounter() {
-        // this.salsaBottleCounter++;
-        // this.bottles.push(this.salsaBottleCounter);
-        // console.log('ich habe bottles hinzugefügt', this.bottles);
-        // console.log('bottles gleich', this.salsaBottle);
-    }
-
 
 
     collectSalsaBottle() {
@@ -71,12 +71,11 @@ class MovableObject extends DrawableObject {
         }
     }
 
- 
-
+    // kontrolliert ob der Character verletzt wurde in der letzen 1s
     isHurt() {
         let timepassed = new Date().getTime() - this.lastHit; // Differenz in ms
         timepassed = timepassed / 1000; // Differenz in s
-        return timepassed < 1;
+        return timepassed < 3;
     }
 
 
@@ -99,11 +98,13 @@ class MovableObject extends DrawableObject {
 
     moveRight() {
         this.x += this.speed;
+        this.lastAction = new Date().getTime();
+
     }
 
-
     moveLeft() {
-            this.x -= this.speed;
+        this.x -= this.speed;
+        this.lastAction = new Date().getTime();
     }
 
     moveLeftClouds() {
@@ -116,5 +117,15 @@ class MovableObject extends DrawableObject {
     jump() {
         this.speedY = 30;
     }
+ 
+ 
+    isAsleep() {
+        let timePassed = new Date().getTime() - this.lastAction;
+        timePassed = timePassed / 1000;
+        return timePassed > 5;
+      }
 
 }
+
+
+

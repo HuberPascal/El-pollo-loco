@@ -44,7 +44,7 @@ class TrowableObject extends MovableObject {
 
 
     hitGround() {
-        return this.y > 260;
+        return this.y > 270;
     }
     
 
@@ -57,14 +57,11 @@ class TrowableObject extends MovableObject {
     }
 
 
-
     trow() {
-            this.speedY = 30;
+            this.speedY = 20;
             this.applyGravity();
             setInterval(() => {
                 this.x += 10;
-            }, 25); 
-        
+            }, 25);
     }
-
 }

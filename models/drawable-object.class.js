@@ -13,15 +13,17 @@ class DrawableObject {
         loadImage(path) {
             this.img = new Image(); // this.img = document.getElementById('image') <img id="image" scr>
             this.img.src = path;
+            console.log('das bild ist:', this.img);
         }
 
 
         draw(ctx) {
+          
             ctx.drawImage(this.img, this.x, this.y, this.width, this.height);
         }
 
         drawFrame(ctx) {
-            if(this instanceof Character || this instanceof Chicken || this instanceof Coin || this instanceof SalsaBottle) {
+            if(this instanceof Character || this instanceof Chicken || this instanceof Coin || this instanceof SalsaBottle || this instanceof SmallChicken) {
                 ctx.beginPath();
                 ctx.lineWidth = '5';
                 ctx.strokeStyle = 'blue';
