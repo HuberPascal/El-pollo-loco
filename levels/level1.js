@@ -44,12 +44,12 @@ const level1 = new Level(
         new Cloud(2800)
     ],
     [
-        new Coin(300, 100),
-        new Coin(500, 200),
-        new Coin(700, 100),
-        new Coin(900, 100),
-        new Coin(1100, 200),
-        new Coin(1300, 100),
+        new Coin(500, 250),
+        new Coin(580, 210),
+        new Coin(660, 170),
+        new Coin(740, 210),
+        new Coin(820, 250),
+        // new Coin(1300, 100),
         // new Coin(300, 200),
         // new Coin(400, 200),
         // new Coin(500, 200)

@@ -78,7 +78,7 @@ class World {
 
     enemieGetsKilled(enemy) {
         let indexEnemy = this.level.enemies.indexOf(enemy);
-        let hittedEnemy = (this.level.enemies[indexEnemy].energy = 0);
+        // let hittedEnemy = (this.level.enemies[indexEnemy].energy = 0);
         setTimeout(() => {
             this.level.enemies.splice(indexEnemy, 1);
         }, 100);

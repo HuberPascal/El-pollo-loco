@@ -4,10 +4,11 @@ class SmallChicken extends MovableObject {
     width = 70;
 
     offset = {
-        top: 0,
+        top: 2,
+        bottom: 2,
         left: 2,
         right: 2,
-        bottom: 2,
+        
     };
 
     IMAGES_WALKING = [
