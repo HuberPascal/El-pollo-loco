@@ -1,5 +1,6 @@
 class World {
     character = new Character();
+    endboss = new Endboss();
     level = level1;
     canvas;
     ctx;
@@ -8,6 +9,8 @@ class World {
     statusBarHealth = new StatusBarHealth();
     statusBarBottles = new StatusBarBottle();
     statusBarCoin = new StatusBarCoin();
+    statusBarEndboss = new StatusBarEndboss();
+    statusBarEndbossHeart = new StatusBarEndbossHeart();
     coin = new Coin();
     salsaBottle = new SalsaBottle();
     throwableObjects = [];
@@ -37,6 +40,7 @@ class World {
             this.checkCharacterCollidesEnemy();
             this.checkCollisions();
             this.checkThrowObjects();
+            this.checkEndboss();
         }, 100);
     }
 
@@ -92,7 +96,7 @@ class World {
     }
 
     characterGetsHurt() {
-        this.character.hit();
+        this.character.hit();       
         this.statusBarHealth.setPercentage(this.character.energy);
         // playAudio('characterHurt');
     }
@@ -149,6 +153,8 @@ class World {
         this.addToMap(this.statusBarHealth);
         this.addToMap(this.statusBarCoin);
         this.addToMap(this.statusBarBottles);
+        this.addToMap(this.statusBarEndboss);
+        this.addToMap(this.statusBarEndbossHeart);
         this.ctx.translate(this.camera_x, 0);
         
         this.addToMap(this.character); 
@@ -196,6 +202,34 @@ class World {
     flipImageBack(mo) {
         mo.x = mo.x * -1;
         this.ctx.restore();
+    }
+
+    checkEndboss() {
+        if(this.characterReachesEndboss()) {
+            this.activatingEndboss();
+        } else {
+            this.hiddenStatusBarOfEndboss();
+        }
+    }
+
+    characterReachesEndboss() {
+        return this.endboss.x - this.character.x < 600;
+    }
+
+    activatingEndboss() {
+        this.statusBarEndboss.width = 200;
+        this.statusBarEndboss.height = 60;
+        this.statusBarEndbossHeart.width = 60;
+        this.statusBarEndbossHeart.height = 60;
+        // playAudio('endboss');
+        // pausedAudio('background');
+    }
+
+    hiddenStatusBarOfEndboss() {
+        this.statusBarEndboss.width = 0;
+        this.statusBarEndboss.height = 0;
+        this.statusBarEndbossHeart.width = 0;
+        this.statusBarEndbossHeart.height = 0;
     }
 
 

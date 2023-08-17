@@ -2,11 +2,12 @@ class MovableObject extends DrawableObject {
     speed = 0.15;
     otherDirection = false;
     speedY = 0;
-    acceleration = 2.5;
-    energy = 100;
+    acceleration = 3.0;
+    energy = 100; 
     coins = 0;
-    lastHit = 0;
+    lastHit = 0; 
     lastAction;
+    ground = 130;
     
 
 
@@ -16,6 +17,9 @@ class MovableObject extends DrawableObject {
             if(this.isAboveGround() || this.speedY > 0) {
                 this.y -= this.speedY;
                 this.speedY -= this.acceleration;
+                if (this instanceof Character && this.y - this.speedY > this.ground) {
+                    this.speedY = (this.ground - this.y) * -1;
+                }
             }
         }, 1000 / 25);
     }
@@ -24,7 +28,7 @@ class MovableObject extends DrawableObject {
         if(this instanceof TrowableObject) { // TrowableObject should always fall
             return true;
         } else {
-        return this.y < 130;
+        return this.y < this.ground;
         }
     }
 
@@ -41,7 +45,7 @@ class MovableObject extends DrawableObject {
     // }
 
     hit() {
-        this.energy -= 5;
+        this.energy -= 20;
         if(this.energy < 0) {
             this.energy = 0;
         } else {
@@ -115,7 +119,7 @@ class MovableObject extends DrawableObject {
     
 
     jump() {
-        this.speedY = 30;
+        this.speedY = 20;
     }
  
  
