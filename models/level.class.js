@@ -3,6 +3,7 @@ class Level {
     enemies;
     clouds;
     coins;
+    bottles;
     salsaBottles;
     level_end_x = 2200;
 

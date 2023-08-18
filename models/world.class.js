@@ -16,6 +16,7 @@ class World {
     throwableObjects = [];
     salsaBottles = 0;
     salsaBottleCounter = 0;
+    throwableBottles = [];
 
 
     constructor(canvas, keyboard) {
@@ -38,9 +39,11 @@ class World {
     runIntervals() {
         setInterval(() => {
             this.checkCharacterCollidesEnemy();
+            this.checkEndboss();
             this.checkCollisions();
             this.checkThrowObjects();
-            this.checkEndboss();
+            this.checkBottleHurtingEndboss();
+            this.checkBottleIsSmashed();
         }, 100);
     }
 
@@ -107,15 +110,6 @@ class World {
             this.coinCollision();
             this.salsaBottleCollision();
     }
-
-    // enemyCollision() {
-    //     this.level.enemies.forEach((enemy) => {
-    //         if(this.character.isColliding(enemy)) {
-    //             // this.character.hit();
-    //             // this.statusBarHealth.setPercentage(this.character.energy);
-    //         }
-    //     });
-    // }
 
     coinCollision() { 
         this.level.coins.forEach((coin, index) => {
@@ -221,6 +215,7 @@ class World {
         this.statusBarEndboss.height = 60;
         this.statusBarEndbossHeart.width = 60;
         this.statusBarEndbossHeart.height = 60;
+        this.endboss.isAlarmed = true;
         // playAudio('endboss');
         // pausedAudio('background');
     }
@@ -232,5 +227,43 @@ class World {
         this.statusBarEndbossHeart.height = 0;
     }
 
+
+    checkBottleHurtingEndboss() {
+        this.throwableObjects.forEach((bottle) => {
+          if (this.bottleCollidesEndboss(bottle)) {
+            this.endbossGetsHurt();
+          }
+        });
+      }
+
+      bottleCollidesEndboss(bottle) {
+        return this.endboss.isColliding(bottle) && !this.endboss.isHurt();
+      }
+
+      endbossGetsHurt() {
+        this.endboss.isAlarmed = false;
+        this.endboss.hit();
+        this.statusBarEndboss.setPercentage(this.endboss.energy);
+        // this.playAudio('chickenHit');
+      }
+
+
+      checkBottleIsSmashed() {
+        this.throwableObjects.forEach((bottle) => {
+          if (this.bottleCollidesBottomOrEndboss(bottle)) {
+            this.clearBottle(bottle);
+          }
+        });
+      }
+
+
+      bottleCollidesBottomOrEndboss(bottle) {
+        return bottle.hitGround() || this.endboss.isColliding(bottle);
+      }
+
+      clearBottle(bottle) {
+        bottle.isSmashed = true;
+        // playAudio('bottleSmashed');
+      }
 
 }

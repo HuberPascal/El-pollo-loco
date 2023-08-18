@@ -16,7 +16,8 @@ class TrowableObject extends MovableObject {
         'img/6_salsa_bottle/bottle_rotation/bottle_splash/6_bottle_splash.png'
     ];
 
-    isSplash = false;
+    // isSplash = false;
+    isSmashed = false;
 
 
     constructor(x, y) {
@@ -34,7 +35,7 @@ class TrowableObject extends MovableObject {
 
     animate() {
         setInterval(() => {
-            if(this.isSplash) {
+            if(this.isSmashed) {
                 this.playAnimation(this.IMAGES_SALSA_BOTTLE_SPLASH);
             } else {
                 this.playAnimation(this.IMAGES_SALSA_BOTTLE_ROTATION);
@@ -51,7 +52,7 @@ class TrowableObject extends MovableObject {
     salsaBottleRotationOrSplash() {
         setInterval(() => {
             if(this.hitGround()) {
-                this.isSplash = true;
+                this.isSmashed = true;
             }
         }, 25);
     }

@@ -88,6 +88,10 @@ class MovableObject extends DrawableObject {
         return timepassed < 3;
     }
 
+    wasHit() {
+        return this.energy < 100;
+      }
+
 
     isDead(){
         return this.energy == 0;
@@ -116,6 +120,7 @@ class MovableObject extends DrawableObject {
         this.x -= this.speed;
         this.lastAction = new Date().getTime();
     }
+    
 
     moveLeftClouds() {
         setInterval(() => {
@@ -124,9 +129,17 @@ class MovableObject extends DrawableObject {
     }
     
 
+    isAtStart() {
+        return this.x <= 0;
+    }
+
     jump() {
         this.speedY = 20;
     }
+
+    cannotMove() {
+        return (this.speedX = 0);
+      }
  
  
     isAsleep() {
