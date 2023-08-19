@@ -46,6 +46,7 @@ class SmallChicken extends MovableObject {
 
     playChicken() {
         if (this.isDead()) {
+            this.speed = 0;
             this.playAnimation(this.IMAGES_DEAD_CHICKEN);
         } else {
             this.playAnimation(this.IMAGES_WALKING);

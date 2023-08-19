@@ -6,6 +6,7 @@ class MovableObject extends DrawableObject {
         bottom: 0,
       };  
     speed = 0.15;
+    endbossSpeed = 20;
     otherDirection = false;
     speedY = 0;
     acceleration = 3.0;
@@ -119,6 +120,10 @@ class MovableObject extends DrawableObject {
     moveLeft() {
         this.x -= this.speed;
         this.lastAction = new Date().getTime();
+    }
+
+    endbossMoveLeft() {
+        this.x -= this.endbossSpeed;
     }
     
 

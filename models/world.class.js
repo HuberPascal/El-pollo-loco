@@ -81,10 +81,10 @@ class World {
 
     enemieGetsKilled(enemy) {
         let indexEnemy = this.level.enemies.indexOf(enemy);
-        // let hittedEnemy = (this.level.enemies[indexEnemy].energy = 0);
+        let hittedEnemy = (this.level.enemies[indexEnemy].energy = 0);
         setTimeout(() => {
             this.level.enemies.splice(indexEnemy, 1);
-        }, 100);
+        }, 700);
         this.character.jump();
         // playAudio('chickenHit');
     }
@@ -135,7 +135,7 @@ class World {
  
 
     draw() {
-        this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+        this.clearCanvas();
 
         this.ctx.translate(this.camera_x, 0);
         this.addObjectsToMap(this.level.BackgroundObjects);
@@ -152,6 +152,7 @@ class World {
         this.ctx.translate(this.camera_x, 0);
         
         this.addToMap(this.character); 
+        this.addToMap(this.endboss); 
         this.addObjectsToMap(this.level.enemies); 
         this.addObjectsToMap(this.level.coins);
         this.addObjectsToMap(this.level.salsaBottles);
@@ -165,6 +166,10 @@ class World {
         requestAnimationFrame(function() {
             self.draw();
         });
+    }
+
+    clearCanvas() {
+        this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
     }
 
 

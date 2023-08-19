@@ -134,29 +134,16 @@ class Character extends MovableObject {
       }, 70);
     }
  
-      // isCharacterSleeping() {
-      //   return if()
-      // }
-
-      // updateTimeStempOfLastMovement() {
-      //   this.timeStempOflastMovement = new Date().getTime();
-      //   return true;
-      // }
-
       isInLongSleep() {
         let secondsPassed = (new Date().getTime() - this.timeStempOflastMovement) / 1000;
         return secondsPassed > 5;
       }
-
-
-      
 
     jump() {
       this.speedY = 30;
       this.lastAction = new Date().getTime();
 
     }
-
 }
 
 
