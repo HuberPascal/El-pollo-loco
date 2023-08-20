@@ -53,6 +53,7 @@ class Endboss extends MovableObject {
     ];
 
     isAlarmed = false;
+    powerOfPushing = 50;
 
      constructor() {
         super().loadImage('img/4_enemie_boss_chicken/2_alert/G5.png');
@@ -63,7 +64,7 @@ class Endboss extends MovableObject {
         this.loadImages(this.IMAGES_DEAD);
         this.loadImages(this.IMAGES_ATTACK);
         
-        this.x = 2200;
+        this.x = 3850;
         this.animate();
     }
 

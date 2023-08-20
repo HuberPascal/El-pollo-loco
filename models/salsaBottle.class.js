@@ -13,9 +13,11 @@ class SalsaBottle extends MovableObject {
         'img/6_salsa_bottle/1_salsa_bottle_on_ground.png'
     ];
 
-    constructor(x) {
+    constructor(x, y) {
         super().loadImage('img/6_salsa_bottle/1_salsa_bottle_on_ground.png');
         this.loadImages(this.IMAGES_SALSA_BOTTLE);
+        // this.x = x;
+        this.y = 350;
         this.x = x + Math.random() * 500;
         // this.y = y + Math.random() * 200;
         // this.animate();

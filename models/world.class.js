@@ -44,6 +44,7 @@ class World {
             this.checkThrowObjects();
             this.checkBottleHurtingEndboss();
             this.checkBottleIsSmashed();
+            this.checkEndbossHurtCharacter();
         }, 100);
     }
 
@@ -184,7 +185,7 @@ class World {
             this.flipImage(mo);
         }
         mo.draw(this.ctx);
-        mo.drawFrame(this.ctx);
+        // mo.drawFrame(this.ctx);
 
         if(mo.otherDirection) {
             this.flipImageBack(mo);
@@ -271,4 +272,17 @@ class World {
         // playAudio('bottleSmashed');
       }
 
+
+    checkEndbossHurtCharacter() {
+        if(this.endbossCollidesCharacter()) {
+            this.characterGetsHurt();
+            // alert('geht doch')
+        }
+    }
+
+    endbossCollidesCharacter() {
+        return (
+            !this.character.isHurt() && this.character.isColliding(this.endboss)
+        );
+      }
 }
