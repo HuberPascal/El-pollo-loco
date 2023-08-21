@@ -23,7 +23,7 @@ class SalsaBottle extends MovableObject {
         // this.animate();
         this.width = 80;
         this.height = 80;
-    } 
+     } 
 
     // animate() {
     //     setInterval(() => {
