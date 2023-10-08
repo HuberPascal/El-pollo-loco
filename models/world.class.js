@@ -63,6 +63,7 @@ class World {
     checkCharacterCollidesEnemy() {
         this.level.enemies.forEach((enemy) => {
             if(this.characterJumpsOnTop(enemy)) {
+                playAudio('chickenHit');
                 this.enemieGetsKilled(enemy);
             }
             if(this.enemieCanHurtCharacter(enemy)) {
@@ -102,7 +103,7 @@ class World {
     characterGetsHurt() {
         this.character.hit();       
         this.statusBarHealth.setPercentage(this.character.energy);
-        // playAudio('characterHurt');
+        
     }
 
 
@@ -222,7 +223,7 @@ class World {
         this.statusBarEndbossHeart.width = 60;
         this.statusBarEndbossHeart.height = 60;
         this.endboss.isAlarmed = true;
-        // playAudio('endboss');
+        playAudio('endboss');
         // pausedAudio('background');
     }
 
@@ -250,7 +251,7 @@ class World {
         this.endboss.isAlarmed = false;
         this.endboss.hit();
         this.statusBarEndboss.setPercentage(this.endboss.energy);
-        // this.playAudio('chickenHit');
+        playAudio('chickenHit');
       }
 
 
@@ -268,15 +269,17 @@ class World {
       }
 
       clearBottle(bottle) {
+        if (bottle.isSmashed == false) {
+            playAudio('bottleSmashed');
+        }
         bottle.isSmashed = true;
-        // playAudio('bottleSmashed');
       }
 
 
     checkEndbossHurtCharacter() {
         if(this.endbossCollidesCharacter()) {
             this.characterGetsHurt();
-            // alert('geht doch')
+
         }
     }
 

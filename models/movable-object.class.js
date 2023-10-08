@@ -15,6 +15,8 @@ class MovableObject extends DrawableObject {
     lastHit = 0; 
     lastAction;
     ground = 130;
+
+
     
 
 
@@ -52,6 +54,7 @@ class MovableObject extends DrawableObject {
     // }
 
     hit() {
+        playAudio('hurtSound');
         this.energy -= 20;
         if(this.energy < 0) {
             this.energy = 0;
@@ -64,7 +67,7 @@ class MovableObject extends DrawableObject {
 
 
     collectCoin() {
-        // collect_coin.play();
+        playAudio('coinSound');
         this.coins += 10;
         if(this.coins > 100) {
             this.coins = 100;
@@ -73,7 +76,7 @@ class MovableObject extends DrawableObject {
 
 
     collectSalsaBottle() {
-        // collect_SalsaBottle.play();
+        playAudio('bottleCollected');
         this.world.salsaBottles += 20;
         this.world.salsaBottleCounter++;
         console.log('bottles gleich', this.world.salsaBottleCounter);
@@ -110,12 +113,24 @@ class MovableObject extends DrawableObject {
         this.currentImage++; // Inkrementierung von currentImage hinzugefügt
     }
 
+    characterMoveRight() {
+        this.x += this.speed;
+        this.lastAction = new Date().getTime();
+        playAudio('walkingSound');
+    }
+
+    characterMoveLeft() {
+        this.x -= this.speed;
+        this.lastAction = new Date().getTime();
+        playAudio('walkingSound');
+    }
 
     moveRight() {
         this.x += this.speed;
         this.lastAction = new Date().getTime();
-
+        // this.walking_sound.play()
     }
+
 
     moveLeft() {
         this.x -= this.speed;
@@ -147,11 +162,13 @@ class MovableObject extends DrawableObject {
       }
  
  
-    isAsleep() {
+      isAsleep() {
         let timePassed = new Date().getTime() - this.lastAction;
         timePassed = timePassed / 1000;
         return timePassed > 5;
-      }
+    }
+    
+    
 
 }
 

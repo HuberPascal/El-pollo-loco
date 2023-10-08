@@ -69,10 +69,14 @@ class Character extends MovableObject {
       'img/2_character_pepe/1_idle/long_idle/I-20.png'
     ];
 
-    world;
-    walking_sound = new Audio();
+    // walking_sound = walking_sound;
+    // jump_sound = jump_sound;
+    // hurt_sound = hurt_sound;
+    // snore_sound = snore_sound;
 
-    
+    world;
+    hurtSoundPlayed = false;
+
     constructor() {
         super().loadImage('img/2_character_pepe/1_idle/idle/I-1.png');
         this.loadImages(this.IMAGES_STANDING);
@@ -90,33 +94,28 @@ class Character extends MovableObject {
       setInterval(() => {
         // this.walking_sound.pause();
         if(this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x) {
-          this.moveRight();
+          this.characterMoveRight();
           this.otherDirection = false;
-          // this.walking_sound.play();
         }
 
         if(this.world.keyboard.LEFT && this.x > 0) {
-          this.moveLeft();
+          this.characterMoveLeft();
           this.otherDirection = true;
-          // this.walking_sound.play();
+        }
+
+        if (!this.world.keyboard.RIGHT && !this.world.keyboard.LEFT) {
+          // this.walking_sound.pause();
         }
 
         if(this.world.keyboard.SPACE && !this.isAboveGround()) {
+          playAudio('jumpSound');
           this.jump();
         }
 
         this.world.camera_x = -this.x + 100;
       }, 1000 / 60);
 
-      // setInterval(() => {
-      //   if(this.isCharacterSleeping()) {
-      //     this.playAnimation(this.IMAGES_SLEEP);
-      //   };
-      // }, 50);
-
       setInterval(() => {
-        // if(this.energy > 0) {
-        //   this.playAnimation(this.IMAGES_STANDING);
         if(this.isDead()) {
             this.playAnimation(this.IMAGES_DEAD);
         } else if (this.isHurt()) {
@@ -124,16 +123,21 @@ class Character extends MovableObject {
         } else if (this.isAboveGround()) {
             this.playAnimation(this.IMAGES_JUMPING);
         } else if(this.world.keyboard.RIGHT || this.world.keyboard.LEFT) {
-              // Walk animation
             this.playAnimation(this.IMAGES_WALKING);
         } else if(this.isAsleep()) {
+            playAudio('snoreSound');
             this.playAnimation(this.IMAGES_SLEEP);
         } else {
           this.playAnimation(this.IMAGES_STANDING);
+          pauseAudio('walkingSound');
+          pauseAudio('snoreSound');
+
         };
       }, 70);
     }
  
+
+    ////////////// evt. löschen
       isInLongSleep() {
         let secondsPassed = (new Date().getTime() - this.timeStempOflastMovement) / 1000;
         return secondsPassed > 5;
@@ -142,36 +146,7 @@ class Character extends MovableObject {
     jump() {
       this.speedY = 30;
       this.lastAction = new Date().getTime();
-
     }
 }
-
-
-
-
-
-////////////////// Sleep fremd
-  
-
-// playCharacter() {
-//   pauseAudio("characterSnore");
-//   if (gameIsOver && this.energy > 0) {
-//     this.playAnimation(this.imageStanding);
-//   } else if (this.isDead()) {
-//     this.playAnimation(this.imagesDead);
-//   } else if (this.isHurting()) {
-//     this.playAnimation(this.imagesHurting);
-//   } else if (this.isAboveGround()) {
-//     this.playAnimation(this.imagesJumping);
-//   } else if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT) {
-//     this.playAnimation(this.imagesWalking);
-//   } else if (this.isAsleep()) {
-//     this.playAnimation(this.imagesSleeping);
-//     playAudio("characterSnore");
-//   } else {
-//     this.playAnimation(this.imageStanding);
-//   }
-// }
-
 
 

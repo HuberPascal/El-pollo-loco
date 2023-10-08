@@ -16,7 +16,6 @@ class TrowableObject extends MovableObject {
         'img/6_salsa_bottle/bottle_rotation/bottle_splash/6_bottle_splash.png'
     ];
 
-    // isSplash = false;
     isSmashed = false;
 
 
@@ -40,8 +39,15 @@ class TrowableObject extends MovableObject {
             } else {
                 this.playAnimation(this.IMAGES_SALSA_BOTTLE_ROTATION);
             }
+            // this.checkBottleIsSmashed();
         }, 100);
     }
+
+    // checkBottleIsSmashed() {
+    //     if (this.isSmashed) {
+    //         playAudio('bottleSmashed');
+    //     }
+    // }
 
 
     hitGround() {
