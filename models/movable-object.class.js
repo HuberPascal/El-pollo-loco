@@ -17,13 +17,6 @@ class MovableObject extends DrawableObject {
     ground = 130;
 
 
-    // xBack = 100;
-
-
-    
-
-
-
     applyGravity() {
         setInterval(() => {
             if(this.isAboveGround() || this.speedY > 0) {
@@ -104,10 +97,6 @@ class MovableObject extends DrawableObject {
         return this.energy == 0;
     }
 
-    // isGround() {
-    //     return this.y = 150;
-    // }
-
 
     playAnimation(images) {
         let i = this.currentImage % images.length; // let i = 7 % 6; => 1, Rest 1
@@ -119,13 +108,21 @@ class MovableObject extends DrawableObject {
     characterMoveRight() {
         this.x += this.speed;
         this.lastAction = new Date().getTime();
-        playAudio('walkingSound');
+        if (this.isAboveGround()) {
+            pauseAudio('walkingSound');
+        } else {
+            playAudio('walkingSound');
+        }
     }
 
     characterMoveLeft() {
         this.x -= this.speed;
         this.lastAction = new Date().getTime();
-        playAudio('walkingSound');
+        if (this.isAboveGround()) {
+            pauseAudio('walkingSound');
+        } else {
+            playAudio('walkingSound');
+        }
     }
 
     moveRight() {
@@ -154,10 +151,6 @@ class MovableObject extends DrawableObject {
     isAtStart() {
         return this.x <= 0;
     }
-
-    // jump() {
-    //     this.speedY = 20;
-    // }
 
     cannotMove() {
         return (this.speedX = 0);

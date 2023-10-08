@@ -219,8 +219,11 @@ class World {
         this.statusBarEndbossHeart.width = 60;
         this.statusBarEndbossHeart.height = 60;
         this.endboss.isAlarmed = true;
-        playAudio('endboss');
-        pauseAudio('backgroundSound');
+        
+        if (!this.endboss.energy == 0) {
+            playAudio('endboss');
+            pauseAudio('backgroundSound');
+        }
     }
 
     hiddenStatusBarOfEndboss() {

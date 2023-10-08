@@ -9,7 +9,7 @@ class Character extends MovableObject {
     height = 300;
     // y = 155;
     y = 130;
-    speed = 10;
+    speed = 6;
     coins = 0;
     salsaBottles = 0;
     timeStempOflastMovement = new Date().getTime();
@@ -118,6 +118,7 @@ class Character extends MovableObject {
         } else if (this.isHurt()) {
             this.playAnimation(this.IMAGES_HURT);
         } else if (this.isAboveGround()) {
+          // pauseAudio('walkingSound');
             this.playAnimation(this.IMAGES_JUMPING);
         } else if(this.world.keyboard.RIGHT || this.world.keyboard.LEFT) {
             this.playAnimation(this.IMAGES_WALKING);

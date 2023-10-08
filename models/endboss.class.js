@@ -52,6 +52,8 @@ class Endboss extends MovableObject {
         'img/4_enemie_boss_chicken/3_attack/G20.png'
     ];
 
+
+    endbossIsDead = false;
     isAlarmed = false;
     powerOfPushing = 50;
 
@@ -73,11 +75,15 @@ class Endboss extends MovableObject {
           setInterval(() => {
             // console.log('energy ist', this.energy);
             if (this.isDead()) {
+                if (!this.endbossIsDead) {
+                playAudio('gameWon');
+                pauseAudio('endboss');
+                this.endbossIsDead = true;
+                }
                 this.playAnimation(this.IMAGES_DEAD);
             } else if (this.isHurt()) {
                 this.playAnimation(this.IMAGES_HURT);
             } else if (this.wasHit()) {
-                console.log('Huhn wurde getroffen');
                 this.playAnimation(this.IMAGES_ATTACK);
                 this.moveLeft();
             } else if (this.isAlarmed) {
