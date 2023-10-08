@@ -17,6 +17,9 @@ class MovableObject extends DrawableObject {
     ground = 130;
 
 
+    // xBack = 100;
+
+
     
 
 
@@ -89,7 +92,7 @@ class MovableObject extends DrawableObject {
     isHurt() {
         let timepassed = new Date().getTime() - this.lastHit; // Differenz in ms
         timepassed = timepassed / 1000; // Differenz in s
-        return timepassed < 3;
+        return timepassed < 2;
     }
 
     wasHit() {
@@ -128,7 +131,6 @@ class MovableObject extends DrawableObject {
     moveRight() {
         this.x += this.speed;
         this.lastAction = new Date().getTime();
-        // this.walking_sound.play()
     }
 
 
@@ -153,9 +155,9 @@ class MovableObject extends DrawableObject {
         return this.x <= 0;
     }
 
-    jump() {
-        this.speedY = 20;
-    }
+    // jump() {
+    //     this.speedY = 20;
+    // }
 
     cannotMove() {
         return (this.speedX = 0);
@@ -167,9 +169,6 @@ class MovableObject extends DrawableObject {
         timePassed = timePassed / 1000;
         return timePassed > 5;
     }
-    
-    
-
 }
 
 

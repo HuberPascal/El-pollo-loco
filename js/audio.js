@@ -11,7 +11,7 @@ const snore_sound = new Audio('audio/characterSnore.mp3');
 let audios = [
     {
         audioName: "backgroundSound",
-        src: "",
+        src: "audio/background.mp3",
         loop: true,
         volume: 0.4,
         audioElement: null  // Neues Feld für das Audio-Element hinzufügen
@@ -85,6 +85,13 @@ let audios = [
         loop: false,
         volume: 0.4,
         audioElement: null
+    },
+    {
+        audioName: "gameLost",
+        src: "audio/gameLost.mp3",
+        loop: false,
+        volume: 0.4,
+        audioElement: null
     }
 
 ];
@@ -115,3 +122,4 @@ function pauseAudio(audioName) {
         audio.audioElement.pause();
     }
 }
+

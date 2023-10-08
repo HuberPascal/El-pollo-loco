@@ -69,13 +69,9 @@ class Character extends MovableObject {
       'img/2_character_pepe/1_idle/long_idle/I-20.png'
     ];
 
-    // walking_sound = walking_sound;
-    // jump_sound = jump_sound;
-    // hurt_sound = hurt_sound;
-    // snore_sound = snore_sound;
 
     world;
-    hurtSoundPlayed = false;
+    // hurtSoundPlayed = false;
 
     constructor() {
         super().loadImage('img/2_character_pepe/1_idle/idle/I-1.png');
@@ -117,6 +113,7 @@ class Character extends MovableObject {
 
       setInterval(() => {
         if(this.isDead()) {
+          playAudio('gameLost');
             this.playAnimation(this.IMAGES_DEAD);
         } else if (this.isHurt()) {
             this.playAnimation(this.IMAGES_HURT);
@@ -138,10 +135,10 @@ class Character extends MovableObject {
  
 
     ////////////// evt. löschen
-      isInLongSleep() {
-        let secondsPassed = (new Date().getTime() - this.timeStempOflastMovement) / 1000;
-        return secondsPassed > 5;
-      }
+      // isInLongSleep() {
+      //   let secondsPassed = (new Date().getTime() - this.timeStempOflastMovement) / 1000;
+      //   return secondsPassed > 5;
+      // }
 
     jump() {
       this.speedY = 30;

@@ -13,7 +13,6 @@ class DrawableObject {
         loadImage(path) {
             this.img = new Image(); // this.img = document.getElementById('image') <img id="image" scr>
             this.img.src = path;
-            console.log('das bild ist:', this.img);
         }
 
 

@@ -26,10 +26,7 @@ class World {
         this.draw();
         this.setWorld();
         this.runIntervals();
-        // this.checkCharacterCollidesEnemy();
-        // this.checkCollisions();
-        // this.checkBottleIsSmashed();
-        // playAudio('background');
+        playAudio('backgroundSound');
     }
 
     setWorld() {
@@ -88,7 +85,6 @@ class World {
             this.level.enemies.splice(indexEnemy, 1);
         }, 700);
         this.character.jump();
-        // playAudio('chickenHit');
     }
 
 
@@ -224,7 +220,7 @@ class World {
         this.statusBarEndbossHeart.height = 60;
         this.endboss.isAlarmed = true;
         playAudio('endboss');
-        // pausedAudio('background');
+        pauseAudio('backgroundSound');
     }
 
     hiddenStatusBarOfEndboss() {
@@ -276,12 +272,19 @@ class World {
       }
 
 
-    checkEndbossHurtCharacter() {
-        if(this.endbossCollidesCharacter()) {
+      checkEndbossHurtCharacter() {
+        if (this.endbossCollidesCharacter()) {
             this.characterGetsHurt();
-
+            this.resetCharacterPosition();
         }
     }
+    
+    resetCharacterPosition() {
+        this.character.x -= 500;
+    }
+    
+
+
 
     endbossCollidesCharacter() {
         return (
