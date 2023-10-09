@@ -28,13 +28,19 @@
     <script src="js/game.js"></script>
     <title>El pollo loco</title>
 </head>
-<body onload="init()">
+<body>
 
-    <h1 id="title">EL POLLO LOCO</h1>
+    <div id="content" class="borderRadius">
+        <!-- <h1 id="title">EL POLLO LOCO</h1> -->
+        <canvas id="canvas" width="720" height="480"></canvas>
 
-    <canvas id="canvas" width="720" height="480">
-
-    </canvas>
-    
+        <!-- startscreen -->
+        <div id="startscreen" class="borderRadius">
+            <img src="img/9_intro_outro_screens/start/startscreen_1.png" alt="start Screen">
+        </div>
+        <div id="playBtn" class="playBtn">
+            <button onclick="init()">Play</button>
+        </div>
+    </div>
 </body>
 </html>

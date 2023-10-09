@@ -3,8 +3,8 @@ let world;
 let keyboard = new Keyboard();
 
 function init() {
-    canvas = document.getElementById('canvas');
-    world = new World(canvas, keyboard);
+    startGame();
+    changeStyle();
 }
 
 window.addEventListener('keydown', (e) => {
@@ -60,3 +60,13 @@ window.addEventListener("keyup", (e) => {
         keyboard.D = false;
     }
 })
+
+function startGame() {
+    canvas = document.getElementById('canvas');
+    world = new World(canvas, keyboard);
+}
+
+function changeStyle() {
+    document.getElementById('startscreen').classList.add('dNone');
+    document.getElementById('playBtn').classList.add('dNone');
+}
