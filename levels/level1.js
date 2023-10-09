@@ -1,4 +1,7 @@
-const level1 = new Level(
+let level1;
+initLevel()
+function initLevel() {
+level1 = new Level(
     [
         new BackgroundObject('img/5_background/layers/air.png', -719),
         new BackgroundObject('img/5_background/layers/3_third_layer/2.png', -719),
@@ -36,20 +39,20 @@ const level1 = new Level(
         new BackgroundObject('img/5_background/layers/1_first_layer/2.png', 719*5),
     ],
     [
-        new Chicken(500),
-        new Chicken(900), 
-        new Chicken(1200),
-        new Chicken(1500),
-        new Chicken(1900),
-        new Chicken(2400),
-        new Chicken(2700),
-        new Chicken(3000),
-        new SmallChicken(400),
-        new SmallChicken(800),
-        new SmallChicken(1300),
-        new SmallChicken(1900),
-        new SmallChicken(2500),
-        new SmallChicken(2800),
+        // new Chicken(500),
+        // new Chicken(900), 
+        // new Chicken(1200),
+        // new Chicken(1500),
+        // new Chicken(1900),
+        // new Chicken(2400),
+        // new Chicken(2700),
+        // new Chicken(3000),
+        // new SmallChicken(400),
+        // new SmallChicken(800),
+        // new SmallChicken(1300),
+        // new SmallChicken(1900),
+        // new SmallChicken(2500),
+        // new SmallChicken(2800),
     ],
     [
         new Cloud(100),
@@ -91,3 +94,4 @@ const level1 = new Level(
         new SalsaBottle(3000),
     ]
     );
+}
