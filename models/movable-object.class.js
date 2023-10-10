@@ -139,6 +139,10 @@ class MovableObject extends DrawableObject {
     endbossMoveLeft() {
         this.x -= this.endbossSpeed;
     }
+
+    // enbossStop() {
+    //     this.endbossSpeed = 0;
+    // }
     
 
     moveLeftClouds() {

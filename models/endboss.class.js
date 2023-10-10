@@ -55,6 +55,7 @@ class Endboss extends MovableObject {
 
     endbossIsDead = false;
     isAlarmed = false;
+    // finishGame = false;
     powerOfPushing = 50;
 
      constructor() {
@@ -91,6 +92,7 @@ class Endboss extends MovableObject {
             }
           }, 150)
     }
+
 
     moveLeft() {
         if (this.isAtStart()) {

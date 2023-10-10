@@ -70,3 +70,8 @@ function changeStyle() {
     document.getElementById('startscreen').classList.add('dNone');
     document.getElementById('playBtn').classList.add('dNone');
 }
+
+function characterIsDeadScreen() {
+    document.getElementById('gameOverScreen').classList.remove('dNone');
+    // this.finishGame = true;
+}
