@@ -75,7 +75,6 @@ class MovableObject extends DrawableObject {
         playAudio('bottleCollected');
         this.world.salsaBottles += 20;
         this.world.salsaBottleCounter++;
-        console.log('bottles gleich', this.world.salsaBottleCounter);
         if(this.salsaBottles > 100) {
             this.salsaBottles = 100;
         }

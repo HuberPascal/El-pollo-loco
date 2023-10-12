@@ -61,7 +61,10 @@ level1 = new Level(
         new Cloud(1450),
         new Cloud(1900),
         new Cloud(2350),
-        new Cloud(2800)
+        new Cloud(2800),
+        new Cloud(3250),
+        new Cloud(3700),
+        new Cloud(4150)
     ],
     [
         new Coin(500, 250),

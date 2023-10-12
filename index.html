@@ -32,7 +32,9 @@
 
     <div id="content" class="borderRadius">
         <!-- <h1 id="title">EL POLLO LOCO</h1> -->
-        <canvas id="canvas" width="720" height="480"></canvas>
+        <div id="fullscreen">
+            <canvas id="canvas" width="720" height="480"></canvas>
+        </div>
 
         <!-- startscreen -->
         <div id="startscreen" class="borderRadius">
@@ -43,6 +45,11 @@
         </div>
         <div id="gameOverScreen" class="dNone">
             <img src="img/9_intro_outro_screens/game_over/game over.png" alt="Game Over Screen">
+        </div>
+        <div class="infoBar">
+            <img onclick="soundOnOff()" id="soundOnOff" class="dNone" src="img/sound-on.png" alt="Sound on">
+            <img src="img/question-mark.png" alt="Question Image">
+            <img onclick="toggleFullscreen()" src="img/fullscreen.png" alt="Fullscreen Image">
         </div>
     </div>
 </body>

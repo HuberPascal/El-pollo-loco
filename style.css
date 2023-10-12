@@ -87,9 +87,29 @@ canvas {
     transform: scale(1.2);
 }
 
+.infoBar {
+    position: absolute;
+    top: 20px;
+    right: 50px;
+    display: flex;
+    gap: 20px;
+}
+
+.infoBar img {
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+}
+
 .dNone {
     display: none;
 }
+
+.fullscreen {
+    width: 100vw;
+    height: 100vh;
+}
+
 
 /* Smartphones */
 @media only screen and (max-width: 720px) {
