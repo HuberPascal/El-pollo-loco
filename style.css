@@ -28,6 +28,8 @@ h1 {
 canvas {
     background-color: black;
     display: block;
+    width: 100%;
+    height: 100%;
 } 
 
 #content {
@@ -105,9 +107,18 @@ canvas {
     display: none;
 }
 
-.fullscreen {
-    width: 100vw;
-    height: 100vh;
+
+#fullscreen {
+    width: 720px;
+    height: 480px;
+}
+
+#exitFullscreen {
+    display: none;
+}
+
+.iconHover:hover {
+    transform: scale(1.2);
 }
 
 
@@ -125,3 +136,21 @@ canvas {
     }
 }
 
+@media (display-mode: fullscreen) {
+    #goTofullscreen {
+        display: none;
+    }
+
+    #exitFullscreen {
+        display: block;
+    }
+
+    .playBtn {
+        bottom: 35px;
+    }
+
+    .playBtn button {
+        font-size: 40px;
+        padding: 10px 32px;
+    }
+}

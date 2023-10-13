@@ -2,7 +2,6 @@ let canvas;
 let world;
 let keyboard = new Keyboard();
 let isMuted = false;
-
 function init() {
     startGame();
     changeStyle();
@@ -121,36 +120,26 @@ function likeBtn(index) {
     save();
 }
 
-function toggleFullscreen() {
-    openFullscreen();
-    
-    // let fullscreen = document.getElementById('fullscreen');
-    // enterFullscreen(fullscreen);
+function fullscreen() {
+    let fullscreen = document.getElementById('fullscreen');
+    enterFullscreen(fullscreen);
 }
 
 
-function openFullscreen() {
-    document.getElementById('fullscreen').classList.add('fullscreen');
+function enterFullscreen(element) {
+    if (element.requestFullscreen) {
+        element.requestFullscreen();
+    } else if (element.msRequestFullscreen) {
+        element.msRequestFullscreen();
+    } else if (element.webkitRequestFullscreen) {
+        element.webkitRequestFullscreen();
+    }
 }
 
-function closeFullscreen() {
-    document.getElementById('fullscreen').classList.remove('fullscreen');
+function exitFullscreen() {
+    if (document.exitFullscreen) {
+        document.exitFullscreen();
+    } else if (document.webkitExitFullscreen) {
+        document.webkitExitFullscreen();
+    }
 }
-
-// function enterFullscreen(element) {
-//     if (element.requestFullscreen) {
-//         element.requestFullscreen();
-//     } else if (element.msRequestFullscreen) {
-//         element.msRequestFullscreen();
-//     } else if (element.webkitRequestFullscreen) {
-//         element.webkitRequestFullscreen();
-//     }
-// }
-
-// function exitFullscreen() {
-//     if (document.exitFullscreen) {
-//         document.exitFullscreen();
-//     } else if (document.webkitExitFullscreen) {
-//         document.webkitExitFullscreen();
-//     }
-// }
