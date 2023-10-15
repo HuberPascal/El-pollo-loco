@@ -2,6 +2,9 @@ let canvas;
 let world;
 let keyboard = new Keyboard();
 let isMuted = false;
+world;
+
+
 function init() {
     startGame();
     changeStyle();
@@ -9,8 +12,8 @@ function init() {
 
 window.addEventListener('keydown', (e) => {
 
-    if(e.keyCode == 39) {
-        keyboard.RIGHT =  true;
+    if(e.keyCode == 39 && !world.endbossCollidesCharacter()) {
+        keyboard.RIGHT = true;
     }
 
     if(e.keyCode == 37) {
@@ -36,8 +39,8 @@ window.addEventListener('keydown', (e) => {
 
 
 window.addEventListener("keyup", (e) => {
-    if(e.keyCode == 39) {
-        keyboard.RIGHT =  false;
+    if(e.keyCode == 39 && !world.endbossCollidesCharacter()) {
+        keyboard.RIGHT = false;
     }
 
     if(e.keyCode == 37) {
@@ -74,7 +77,12 @@ function changeStyle() {
 
 function characterIsDeadScreen() {
     document.getElementById('gameOverScreen').classList.remove('dNone');
+    document.getElementById('backToStart').classList.remove('dNone');
     // this.finishGame = true;
+}
+
+function backToStart() {
+    location.reload();
 }
 
 function soundOnOff() {

@@ -97,9 +97,10 @@ class World {
     }
 
     characterGetsHurt() {
-        this.character.hit();       
-        this.statusBarHealth.setPercentage(this.character.energy);
-        
+        if (!this.isHurt()) {
+            this.character.hit();       
+            this.statusBarHealth.setPercentage(this.character.energy);
+        }
     }
 
 
@@ -283,15 +284,37 @@ class World {
     }
     
     resetCharacterPosition() {
-        this.character.x -= 500;
+        // const positionCharacterX = this.character.x;
+        // const characterAfterHitPosition = positionCharacterX - 400;
+        // console.log(characterAfterHitPosition);
+
+        this.character.x = this.character.x - 400;
+    
+        // const move = () => {
+        //     // Überprüfe, ob die aktuelle Position des Charakters größer als (aktuelle Position - 500) ist
+        //     if (this.character.x > characterAfterHitPosition) {
+        //         // Subtrahiere 5 Pixel von der aktuellen Position
+        //         this.character.x -= 5;
+        //         console.log(this.character.x);
+    
+        //         // Rufe die Funktion erneut auf, um die Animation fortzusetzen
+        //         setTimeout(move, 5);
+        //     }
+        // };
+    
+        // Starte die Bewegung
+        // move();
     }
+    
+    
+    
     
 
 
 
     endbossCollidesCharacter() {
         return (
-            !this.character.isHurt() && this.character.isColliding(this.endboss)
+            this.character.isColliding(this.endboss)
         );
       }
 }
