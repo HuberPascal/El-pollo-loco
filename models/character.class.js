@@ -99,9 +99,9 @@ class Character extends MovableObject {
           this.otherDirection = true;
         }
 
-        if (!this.world.keyboard.RIGHT && !this.world.keyboard.LEFT) {
-          // this.walking_sound.pause();
-        }
+        // if (!this.world.keyboard.RIGHT && !this.world.keyboard.LEFT) {
+        //   // this.walking_sound.pause();
+        // }
 
         if(this.world.keyboard.SPACE && !this.isAboveGround()) {
           playAudio('jumpSound');

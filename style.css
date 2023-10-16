@@ -104,6 +104,29 @@ canvas {
     cursor: pointer;
 }
 
+#infoAboutPlayContainer {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 3;
+    background-image: url('img/desert.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 101%;
+    height: 100%;
+}
+
+.cross {
+    width: 40px;
+    height: 40px;
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    cursor: pointer;
+}
+
 .dNone {
     display: none;
 }

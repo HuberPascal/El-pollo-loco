@@ -12,7 +12,7 @@ function init() {
 
 window.addEventListener('keydown', (e) => {
 
-    if(e.keyCode == 39 && !world.endbossCollidesCharacter()) {
+    if(e.keyCode == 39) {
         keyboard.RIGHT = true;
     }
 
@@ -39,7 +39,7 @@ window.addEventListener('keydown', (e) => {
 
 
 window.addEventListener("keyup", (e) => {
-    if(e.keyCode == 39 && !world.endbossCollidesCharacter()) {
+    if(e.keyCode == 39) {
         keyboard.RIGHT = false;
     }
 
@@ -96,6 +96,15 @@ function soundOnOff() {
     }
 
     toggleMusic();
+}
+
+function infoAboutPlay() {
+    document.getElementById('infoAboutPlayContainer').classList.remove('dNone');
+    // document.getElementById('cross').
+}
+
+function closeInfoContainer() {
+    document.getElementById('infoAboutPlayContainer').classList.add('dNone');
 }
 
 // function toggleMusic() {

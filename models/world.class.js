@@ -17,6 +17,7 @@ class World {
     salsaBottles = 0;
     salsaBottleCounter = 0;
     throwableBottles = [];
+    wasDKeyPressed = false;
 
 
     constructor(canvas, keyboard) {
@@ -47,15 +48,21 @@ class World {
 
 
 
-    checkThrowObjects() {
-        if(this.keyboard.D && this.salsaBottleCounter > 0) {
-            this.salsaBottleCounter--;
-            this.salsaBottles -= 20;
-            this.statusBarBottles.setPercentage(this.salsaBottles);
-            let bottle = new TrowableObject(this.character.x + 100, this.character.y + 100);
-            this.throwableObjects.push(bottle);
-        }
+
+checkThrowObjects() {
+    if (this.keyboard.D && !this.wasDKeyPressed && this.salsaBottleCounter > 0) {
+        this.salsaBottleCounter--;
+        this.salsaBottles -= 20;
+        this.statusBarBottles.setPercentage(this.salsaBottles);
+        let bottle = new TrowableObject(this.character.x + 100, this.character.y + 100);
+        this.throwableObjects.push(bottle);
     }
+
+    this.wasDKeyPressed = this.keyboard.D;
+}
+
+
+    
 
     checkCharacterCollidesEnemy() {
         this.level.enemies.forEach((enemy) => {
@@ -97,7 +104,7 @@ class World {
     }
 
     characterGetsHurt() {
-        if (!this.isHurt()) {
+        if (!this.character.isHurt()) {
             this.character.hit();       
             this.statusBarHealth.setPercentage(this.character.energy);
         }
@@ -284,10 +291,6 @@ class World {
     }
     
     resetCharacterPosition() {
-        // const positionCharacterX = this.character.x;
-        // const characterAfterHitPosition = positionCharacterX - 400;
-        // console.log(characterAfterHitPosition);
-
         this.character.x = this.character.x - 400;
     
         // const move = () => {
