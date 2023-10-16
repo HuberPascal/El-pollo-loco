@@ -15,6 +15,8 @@ class MovableObject extends DrawableObject {
     lastHit = 0; 
     lastAction;
     ground = 130;
+    lastAction = new Date().getTime();
+
 
 
     applyGravity() {
