@@ -71,6 +71,7 @@ class Character extends MovableObject {
 
 
     world;
+    finishGame = false;
     // hurtSoundPlayed = false;
 
     constructor() {
@@ -90,13 +91,21 @@ class Character extends MovableObject {
       setInterval(() => {
         // this.walking_sound.pause();
         if(this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x) {
-          this.characterMoveRight();
-          this.otherDirection = false;
+          if (!this.isDead()) {
+            this.characterMoveRight();
+            this.otherDirection = false;
+          } else {
+            pauseAudio('walkingSound');
+          }
         }
 
         if(this.world.keyboard.LEFT && this.x > 0) {
-          this.characterMoveLeft();
-          this.otherDirection = true;
+          if (!this.isDead()) {
+            this.characterMoveLeft();
+            this.otherDirection = true;
+          } else {
+            pauseAudio('walkingSound');
+          }
         }
 
         // if (!this.world.keyboard.RIGHT && !this.world.keyboard.LEFT) {
@@ -104,8 +113,13 @@ class Character extends MovableObject {
         // }
 
         if(this.world.keyboard.SPACE && !this.isAboveGround()) {
-          playAudio('jumpSound');
-          this.jump();
+          if (!this.isDead()) {
+            playAudio('jumpSound');
+            this.jump();
+          } else {
+            pauseAudio('jumpSound');
+          }
+
         }
 
         this.world.camera_x = -this.x + 100;
@@ -113,7 +127,9 @@ class Character extends MovableObject {
 
       setInterval(() => {
         if(this.isDead()) {
-            playAudio('gameLost');
+            // pauseAudio('endboss')
+            // playAudio('gameLost');
+            this.checkGameIsFinish();
             characterIsDeadScreen();
             this.playAnimation(this.IMAGES_DEAD);
         } else if (this.isHurt()) {
@@ -132,6 +148,15 @@ class Character extends MovableObject {
 
         };
       }, 70);
+    }
+
+    checkGameIsFinish() {
+      if (!this.finishGame) {
+        pauseAudio('endboss');
+        playAudio('gameLost');
+        this.finishGame = true;
+      }
+
     }
  
 

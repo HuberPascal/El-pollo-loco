@@ -51,11 +51,13 @@ class World {
 
 checkThrowObjects() {
     if (this.keyboard.D && !this.wasDKeyPressed && this.salsaBottleCounter > 0) {
-        this.salsaBottleCounter--;
-        this.salsaBottles -= 20;
-        this.statusBarBottles.setPercentage(this.salsaBottles);
-        let bottle = new TrowableObject(this.character.x + 100, this.character.y + 100);
-        this.throwableObjects.push(bottle);
+        if (!this.character.isDead()) {
+            this.salsaBottleCounter--;
+            this.salsaBottles -= 20;
+            this.statusBarBottles.setPercentage(this.salsaBottles);
+            let bottle = new TrowableObject(this.character.x + 100, this.character.y + 100);
+            this.throwableObjects.push(bottle);
+        }
     }
 
     this.wasDKeyPressed = this.keyboard.D;
@@ -104,7 +106,7 @@ checkThrowObjects() {
     }
 
     characterGetsHurt() {
-        if (!this.character.isHurt()) {
+        if (!this.character.isHurt() && !this.character.isDead()) {
             this.character.hit();       
             this.statusBarHealth.setPercentage(this.character.energy);
         }
@@ -229,8 +231,10 @@ checkThrowObjects() {
         this.endboss.isAlarmed = true;
         
         if (!this.endboss.energy == 0) {
-            playAudio('endboss');
-            pauseAudio('backgroundSound');
+            if (!this.character.isDead()) {
+                playAudio('endboss');
+                pauseAudio('backgroundSound');
+            }
         }
     }
 

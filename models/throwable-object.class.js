@@ -29,7 +29,7 @@ class TrowableObject extends MovableObject {
         this.width = 50;
         this.animate();
         this.salsaBottleRotationOrSplash();
-        this.trow();
+        this.throw();
     }
 
     animate() {
@@ -64,7 +64,7 @@ class TrowableObject extends MovableObject {
     }
 
 
-    trow() {
+    throw() {
             this.speedY = 20;
             this.applyGravity();
             setInterval(() => {

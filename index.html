@@ -27,6 +27,10 @@
     <script src="js/audio.js"></script>
     <script src="js/game.js"></script>
     <title>El pollo loco</title>
+
+    <!-- Favicon einbinden -->
+    <link rel="icon" type="image/x-icon" href="img/3_enemies_chicken/chicken_normal/1_walk/1_w.png">
+    <link rel="shortcut icon" type="image/x-icon" href="img/3_enemies_chicken/chicken_normal/1_walk/1_w.png">
 </head>
 <body>
 
@@ -51,14 +55,45 @@
             </div>
             <div id="infoAboutPlayContainer" class="dNone">
                 <img onclick="closeInfoContainer()" class="cross iconHover" src="img/close.png" alt="close Image">
-                <img src="" alt="">
-                <img src="" alt="">
+                <div class="iconInfoContainer">
+                    <div class="playerCharacter">
+                        <span>Walk Left</span>
+                        <img src="img/arrow-left-white.png" alt="">
+                    </div>
+                    <div class="playerCharacter">  
+                        <span>Walk Rigth</span>
+                        <img src="img/arrow-right-white.png" alt="">
+                    </div>
+                    <div class="playerCharacter">  
+                        <span>Jump</span>
+                        <img src="img/space.png" alt="">
+                    </div>
+                    <div class="playerCharacter">  
+                        <span>Throw Bottle</span>
+                        <div class="keyboardD">
+                            D
+                        </div>
+                    </div>
+                </div>
+                <div class="howToPlay">          
+                    Defeat the endboss with collected bottles, conserve them wisely. Watch out for incoming chickens. Collect coins for extra power. Good luck!
+                </div>
             </div>
-            <div class="infoBar">
+            <p class="infoBar">
                 <img onclick="soundOnOff()" id="soundOnOff" class="dNone iconHover" src="img/sound-on.png" alt="Sound on">
-                <img onclick="infoAboutPlay()" src="img/question-mark.png" class="iconHover" alt="Question Image">
-                <img onclick="fullscreen()" id="goTofullscreen" class="iconHover" src="img/fullscreen.png" alt="Fullscreen Image">
+                <img onclick="infoAboutPlay()" src="img/question-mark.png" class="iconHover iconLeft" alt="Question Image">
+                <img onclick="fullscreen()" id="goTofullscreen" class="iconHover iconRight" src="img/fullscreen.png" alt="Fullscreen Image">
                 <img onclick="exitFullscreen()" id="exitFullscreen" class="iconHover" src="img/fullscreen.png" alt="Fullscreen Image">
+            </p>
+            <div class="playBtnMobile dNone">
+                <div class="playBtnMobileSection">
+                    <img src="img/arrow-left-black.png" alt="">
+                    <img src="img/arrow-right-black.png" alt="">
+                </div>
+                <div class="playBtnMobileSection">
+                    <img src="img/arrow-up-black.png" alt="">
+                    <img src="img/bottle-throw.png" alt="">
+                </div>
             </div>
         </div>
     </div>
