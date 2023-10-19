@@ -26,13 +26,20 @@ class World {
         this.keyboard = keyboard;
         this.draw();
         this.setWorld();
+        this.setEndboss(); // Hinzugefügt
         this.runIntervals();
         playAudio('backgroundSound');
     }
+    
 
     setWorld() {
         this.character.world = this;
     }
+
+    setEndboss() {
+        this.endboss.world = this;
+    }
+    
 
     runIntervals() {
         setInterval(() => {

@@ -96,11 +96,15 @@ class Endboss extends MovableObject {
 
 
     moveLeft() {
-        if (this.isAtStart()) {
-          this.cannotMove();
-        } else {
-          super.endbossMoveLeft();
+        if (!this.world.character.isDead()) {
+            if (this.isAtStart()) {
+                this.cannotMove();
+            } else {
+                super.endbossMoveLeft();
+            }
         }
-      }
+    }
+    
+    
 }
 
