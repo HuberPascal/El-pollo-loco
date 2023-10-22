@@ -1,8 +1,4 @@
 class StatusBarEndbossHeart extends DrawableObject {
-    // x = 485;
-    // y = 52;
-    // width = 0;
-    // height = 0;
     x = 487;
     y = 60;
     width = 65;
@@ -13,10 +9,6 @@ class StatusBarEndbossHeart extends DrawableObject {
     constructor() {
         super();
         this.loadImage(this.IMAGES_HEART);
-        // this.x = 487;
-        // this.y = 60;
-        // this.width = 60;
-        // this.height = 60;
     }
   }
   

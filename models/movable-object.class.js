@@ -142,20 +142,6 @@ class MovableObject extends DrawableObject {
         this.x -= this.endbossSpeed;
     }
 
-    // enbossStop() {
-    //     this.endbossSpeed = 0;
-    // }
-    
-
-    // moveLeftClouds() {
-    //     this.cloudsMoveLeft = setInterval(() => {
-    //         this.x -= 0.15;
-    //     }, 1000 / 60);
-    // }
-
-
-    
-
     isAtStart() {
         return this.x <= 0;
     }

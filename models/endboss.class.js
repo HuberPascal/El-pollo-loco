@@ -55,12 +55,10 @@ class Endboss extends MovableObject {
 
     endbossIsDead = false;
     isAlarmed = false;
-    // finishGame = false;
     powerOfPushing = 50;
 
      constructor() {
         super().loadImage('img/4_enemie_boss_chicken/2_alert/G5.png');
-        // super().loadImage(this.IMAGES_ALERT[0]);
         this.loadImages(this.IMAGES_ALERT);
         this.loadImages(this.IMAGES_WALKING);
         this.loadImages(this.IMAGES_HURT);
@@ -75,7 +73,6 @@ class Endboss extends MovableObject {
 
     animate() {
           setInterval(() => {
-            // console.log('energy ist', this.energy);
             if (this.isDead()) {
                 if (!this.endbossIsDead) {
                 playAudio('gameWon');
@@ -105,7 +102,5 @@ class Endboss extends MovableObject {
             }
         }
     }
-    
-    
 }
 

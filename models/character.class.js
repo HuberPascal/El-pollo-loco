@@ -72,7 +72,6 @@ class Character extends MovableObject {
 
     world;
     finishGame = false;
-    // hurtSoundPlayed = false;
 
     constructor() {
         super().loadImage('img/2_character_pepe/1_idle/idle/I-1.png');
@@ -89,7 +88,6 @@ class Character extends MovableObject {
 
     animate() {
       this.characterKeyboardInterval = setInterval(() => {
-        // this.walking_sound.pause();
         if(this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x) {
           if (!this.isDead()) {
             this.characterMoveRight();
@@ -108,10 +106,6 @@ class Character extends MovableObject {
           }
         }
 
-        // if (!this.world.keyboard.RIGHT && !this.world.keyboard.LEFT) {
-        //   // this.walking_sound.pause();
-        // }
-
         if(this.world.keyboard.SPACE && !this.isAboveGround()) {
           if (!this.isDead()) {
             playAudio('jumpSound');
@@ -127,8 +121,6 @@ class Character extends MovableObject {
 
       this.characterInterval = setInterval(() => {
         if(this.isDead()) {
-            // pauseAudio('endboss')
-            // playAudio('gameLost');
             this.checkGameIsFinish();
             characterIsDeadScreen();
             this.playAnimation(this.IMAGES_DEAD);
@@ -158,8 +150,7 @@ class Character extends MovableObject {
       this.loadImages(this.IMAGES_STANDING);
   }
 
-
-
+  
     checkGameIsFinish() {
       if (!this.finishGame) {
         pauseAudio('endboss');
@@ -168,13 +159,7 @@ class Character extends MovableObject {
       }
 
     }
- 
 
-    ////////////// evt. löschen
-      // isInLongSleep() {
-      //   let secondsPassed = (new Date().getTime() - this.timeStempOflastMovement) / 1000;
-      //   return secondsPassed > 5;
-      // }
 
     jump() {
       this.speedY = 30;

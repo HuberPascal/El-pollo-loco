@@ -14,17 +14,6 @@ function init() {
     rotateMessage();
 }
 
-// function setStoppableInterval(fn, time) {
-//     let id = setInterval(fn, time);
-//     intervalsIds.push(id);
-// }
-
-// setStoppableInterval(, 500);
-// setStoppableInterval(, 500);
-
-// function stopGame() {
-//     intervalsIds.forEach(clearInterval);
-// }
 
 function startGame() {
     canvas = document.getElementById('canvas');

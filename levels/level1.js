@@ -68,23 +68,6 @@ level1 = new Level(
         new Cloud(4600)
     ],
     [
-        // new Coin(500, 170),
-        // new Coin(650, 170),
-        // new Coin(800, 170),
-        // new Coin(950, 170),
-        // new Coin(1100, 170),
-
-        // new Coin(2000, 170),
-        // new Coin(2150, 170),
-        // new Coin(2300, 170),
-        // new Coin(2450, 170),
-        // new Coin(2600, 170),
-
-        // new Coin(2150, 170),
-        // new Coin(2300, 170),
-        // new Coin(2450, 170),
-        // new Coin(2600, 170),
-
         new Coin(500, 250),
         new Coin(580, 210),
         new Coin(660, 170),

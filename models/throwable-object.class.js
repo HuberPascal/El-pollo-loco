@@ -39,15 +39,8 @@ class TrowableObject extends MovableObject {
             } else {
                 this.playAnimation(this.IMAGES_SALSA_BOTTLE_ROTATION);
             }
-            // this.checkBottleIsSmashed();
         }, 100);
     }
-
-    // checkBottleIsSmashed() {
-    //     if (this.isSmashed) {
-    //         playAudio('bottleSmashed');
-    //     }
-    // }
 
 
     hitGround() {

@@ -26,7 +26,7 @@ class World {
         this.keyboard = keyboard;
         this.draw();
         this.setWorld();
-        this.setEndboss(); // Hinzugefügt
+        this.setEndboss();
         this.runIntervals();
         playAudio('backgroundSound');
     }
@@ -66,7 +66,6 @@ checkThrowObjects() {
             this.throwableObjects.push(bottle);
         }
     }
-
     this.wasDKeyPressed = this.keyboard.D;
 }
 
@@ -121,7 +120,6 @@ checkThrowObjects() {
 
 
     checkCollisions() {  
-            // this.enemyCollision();
             this.coinCollision();
             this.salsaBottleCollision();
     }
@@ -176,7 +174,6 @@ checkThrowObjects() {
 
         this.ctx.translate(-this.camera_x, 0);
 
-        // Draw() wird immer wieder aufgerufen
         let self = this;
         requestAnimationFrame(function() {
             self.draw();
@@ -199,7 +196,6 @@ checkThrowObjects() {
             this.flipImage(mo);
         }
         mo.draw(this.ctx);
-        // mo.drawFrame(this.ctx);
 
         if(mo.otherDirection) {
             this.flipImageBack(mo);
@@ -303,27 +299,7 @@ checkThrowObjects() {
     
     resetCharacterPosition() {
         this.character.x = this.character.x - 400;
-    
-        // const move = () => {
-        //     // Überprüfe, ob die aktuelle Position des Charakters größer als (aktuelle Position - 500) ist
-        //     if (this.character.x > characterAfterHitPosition) {
-        //         // Subtrahiere 5 Pixel von der aktuellen Position
-        //         this.character.x -= 5;
-        //         console.log(this.character.x);
-    
-        //         // Rufe die Funktion erneut auf, um die Animation fortzusetzen
-        //         setTimeout(move, 5);
-        //     }
-        // };
-    
-        // Starte die Bewegung
-        // move();
     }
-    
-    
-    
-    
-
 
 
     endbossCollidesCharacter() {

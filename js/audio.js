@@ -1,12 +1,3 @@
-// const background_sound = new Audio('');
-// const walking_sound = new Audio('audio/walking.mp3');
-// const death_sound = new Audio('audio/gameLost.mp3');
-// const hurt_sound = new Audio('audio/characterHurt.mp3');
-// const jump_sound = new Audio('audio/characterJump.mp3');
-// const chicken_sound = new Audio('audio/chickenHit.mp3');
-// const coin_sound = new Audio('audio/coinCollected.mp3');
-// const snore_sound = new Audio('audio/characterSnore.mp3');
-
 
 let audios = [
     {
@@ -14,7 +5,7 @@ let audios = [
         src: "audio/background.mp3",
         loop: true,
         volume: 0.4,
-        audioElement: null,  // Neues Feld für das Audio-Element hinzufügen
+        audioElement: null,
         isPlaying: false
     },
     {
