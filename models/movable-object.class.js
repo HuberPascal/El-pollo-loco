@@ -47,6 +47,7 @@ class MovableObject extends DrawableObject {
                 this.y + this.offset.top < obj.y + obj.height - obj.offset.bottom
     }
 
+
     // isCollidingTop(object) {
     //     return 
     // }
@@ -146,11 +147,13 @@ class MovableObject extends DrawableObject {
     // }
     
 
-    moveLeftClouds() {
-        setInterval(() => {
-            this.x -= 0.15;
-        }, 1000 / 60);
-    }
+    // moveLeftClouds() {
+    //     this.cloudsMoveLeft = setInterval(() => {
+    //         this.x -= 0.15;
+    //     }, 1000 / 60);
+    // }
+
+
     
 
     isAtStart() {

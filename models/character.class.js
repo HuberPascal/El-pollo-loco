@@ -88,7 +88,7 @@ class Character extends MovableObject {
 
 
     animate() {
-      setInterval(() => {
+      this.characterKeyboardInterval = setInterval(() => {
         // this.walking_sound.pause();
         if(this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x) {
           if (!this.isDead()) {
@@ -125,7 +125,7 @@ class Character extends MovableObject {
         this.world.camera_x = -this.x + 100;
       }, 1000 / 60);
 
-      setInterval(() => {
+      this.characterInterval = setInterval(() => {
         if(this.isDead()) {
             // pauseAudio('endboss')
             // playAudio('gameLost');
@@ -149,6 +149,16 @@ class Character extends MovableObject {
         };
       }, 70);
     }
+
+
+    stopCharacterInterval() {
+      clearInterval(this.characterKeyboardInterval);
+      clearInterval(this.characterInterval);
+      pauseAudio('walkingSound');
+      this.loadImages(this.IMAGES_STANDING);
+  }
+
+
 
     checkGameIsFinish() {
       if (!this.finishGame) {

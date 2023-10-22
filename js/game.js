@@ -1,68 +1,30 @@
 let canvas;
 let world;
-let keyboard = new Keyboard();
+let keyboard;
 let isMuted = false;
+let intervalsIds = [];
+let i = 1;
 world;
 
 
 function init() {
+    keyboard = new Keyboard();
     startGame();
     changeStyle();
+    rotateMessage();
 }
 
-window.addEventListener('keydown', (e) => {
+// function setStoppableInterval(fn, time) {
+//     let id = setInterval(fn, time);
+//     intervalsIds.push(id);
+// }
 
-    if(e.keyCode == 39) {
-        keyboard.RIGHT = true;
-    }
+// setStoppableInterval(, 500);
+// setStoppableInterval(, 500);
 
-    if(e.keyCode == 37) {
-        keyboard.LEFT = true;
-    }
-
-    if(e.keyCode == 38) {
-        keyboard.UP = true;
-    }
-
-    if(e.keyCode == 40) {
-        keyboard.DOWN = true;
-    }
-
-    if(e.keyCode == 32) {
-        keyboard.SPACE = true;
-    }
-
-    if(e.keyCode == 68) {
-        keyboard.D = true;
-    }
-});
-
-
-window.addEventListener("keyup", (e) => {
-    if(e.keyCode == 39) {
-        keyboard.RIGHT = false;
-    }
-
-    if(e.keyCode == 37) {
-        keyboard.LEFT = false;
-    }
-
-    if(e.keyCode == 38) {
-        keyboard.UP = false;
-    }
-
-    if(e.keyCode == 40) {
-        keyboard.DOWN = false;
-    }
-
-    if(e.keyCode == 32) {
-        keyboard.SPACE = false;
-    }
-
-    if(e.keyCode == 68) {
-        keyboard.D = false;
-    }
-})
+// function stopGame() {
+//     intervalsIds.forEach(clearInterval);
+// }
 
 function startGame() {
     canvas = document.getElementById('canvas');
@@ -73,6 +35,7 @@ function changeStyle() {
     document.getElementById('startscreen').classList.add('dNone');
     document.getElementById('playBtn').classList.add('dNone');
     document.getElementById('soundOnOff').classList.remove('dNone');
+    document.getElementById('playBtnMobile').classList.remove('dNone');
 }
 
 function characterIsDeadScreen() {
@@ -80,6 +43,19 @@ function characterIsDeadScreen() {
     document.getElementById('backToStart').classList.remove('dNone');
     // this.finishGame = true;
 }
+
+function characterWinScreen() {
+    document.getElementById('gameOverScreen').classList.remove('dNone');
+    document.getElementById('backToStart').classList.remove('dNone');
+    stopCharacterAnimation();
+    // loadImage('img/2_character_pepe/1_idle/idle/I-1.png');
+}
+
+function stopCharacterAnimation() {
+    world.character.stopCharacterInterval();
+    // world.cloud.stopCloudsInterval();
+  }
+
 
 function backToStart() {
     location.reload();
@@ -143,6 +119,7 @@ function fullscreen() {
 }
 
 
+
 function enterFullscreen(element) {
     if (element.requestFullscreen) {
         element.requestFullscreen();
@@ -159,4 +136,16 @@ function exitFullscreen() {
     } else if (document.webkitExitFullscreen) {
         document.webkitExitFullscreen();
     }
+}
+
+
+
+function rotateMessage() {
+    window.addEventListener("orientationchange", function() {
+        if (window.matchMedia("(orientation: portrait)").matches) {
+            document.getElementById("rotateMessageContainer").style.display = "block";
+        } else {
+            document.getElementById("rotateMessageContainer").style.display = "none";
+        }
+    });
 }

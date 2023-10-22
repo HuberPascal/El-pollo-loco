@@ -53,6 +53,12 @@
             <div id="gameOverScreen" class="dNone">
                 <img src="img/9_intro_outro_screens/game_over/game over.png" alt="Game Over Screen">
             </div>
+
+            <div id="rotateMessageContainer" class="dNone">
+                <p id="rotateMessage">Please rotate your device by 90 degrees</p>
+            </div>
+
+
             <div id="infoAboutPlayContainer" class="dNone">
                 <img onclick="closeInfoContainer()" class="cross iconHover" src="img/close.png" alt="close Image">
                 <div class="iconInfoContainer">
@@ -79,20 +85,28 @@
                     Defeat the endboss with collected bottles, conserve them wisely. Watch out for incoming chickens. Collect coins for extra power. Good luck!
                 </div>
             </div>
-            <p class="infoBar">
+            <div class="infoBar">
                 <img onclick="soundOnOff()" id="soundOnOff" class="dNone iconHover" src="img/sound-on.png" alt="Sound on">
                 <img onclick="infoAboutPlay()" src="img/question-mark.png" class="iconHover iconLeft" alt="Question Image">
                 <img onclick="fullscreen()" id="goTofullscreen" class="iconHover iconRight" src="img/fullscreen.png" alt="Fullscreen Image">
                 <img onclick="exitFullscreen()" id="exitFullscreen" class="iconHover" src="img/fullscreen.png" alt="Fullscreen Image">
-            </p>
-            <div class="playBtnMobile dNone">
+            </div>
+            <div id="playBtnMobile" class="playBtnMobile dNone">
                 <div class="playBtnMobileSection">
-                    <img src="img/arrow-left-black.png" alt="">
-                    <img src="img/arrow-right-black.png" alt="">
+                    <div id="btnLeft">
+                        <img src="img/arrow-left-black.png" alt="">
+                    </div>
+                    <div id="btnRight">
+                        <img src="img/arrow-right-black.png" alt="">
+                    </div>
                 </div>
                 <div class="playBtnMobileSection">
-                    <img src="img/arrow-up-black.png" alt="">
-                    <img src="img/bottle-throw.png" alt="">
+                    <div id="btnJump">
+                        <img id="" src="img/arrow-up-black.png" alt="">
+                    </div>
+                    <div id="btnThrow">
+                        <img src="img/bottle-throw.png" alt="">
+                    </div>
                 </div>
             </div>
         </div>

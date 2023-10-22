@@ -67,8 +67,8 @@ class Endboss extends MovableObject {
         this.loadImages(this.IMAGES_DEAD);
         this.loadImages(this.IMAGES_ATTACK);
         
-        // this.x = 3850; // endboss start position
-        this.x = 1850; // endboss start position provisorisch
+        this.x = 3850; // endboss start position
+        // this.x = 1850; // endboss start position provisorisch
         this.animate();
     }
 
@@ -81,6 +81,7 @@ class Endboss extends MovableObject {
                 playAudio('gameWon');
                 pauseAudio('endboss');
                 this.endbossIsDead = true;
+                characterWinScreen();
                 }
                 this.playAnimation(this.IMAGES_DEAD);
             } else if (this.isHurt()) {
