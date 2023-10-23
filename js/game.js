@@ -8,6 +8,7 @@ world;
 
 
 function init() {
+    // initLevel();
     keyboard = new Keyboard();
     startGame();
     changeStyle();
@@ -30,20 +31,44 @@ function changeStyle() {
 function characterIsDeadScreen() {
     document.getElementById('gameOverScreen').classList.remove('dNone');
     document.getElementById('backToStart').classList.remove('dNone');
-    // this.finishGame = true;
+    pauseAudio('backgroundSound');
+    stopAllChickenIntervals();
+    stopAllCloudIntervals();
+    stopAllCoinIntervals();
 }
 
 function characterWinScreen() {
     document.getElementById('gameOverScreen').classList.remove('dNone');
     document.getElementById('backToStart').classList.remove('dNone');
+    stopAllChickenIntervals();
+    stopAllCloudIntervals();
     stopCharacterAnimation();
-    // loadImage('img/2_character_pepe/1_idle/idle/I-1.png');
 }
+
 
 function stopCharacterAnimation() {
     world.character.stopCharacterInterval();
-    // world.cloud.stopCloudsInterval();
   }
+
+  function stopAllChickenIntervals() {
+    level1.enemies.filter(enemie => enemie instanceof Chicken)
+                  .forEach(chicken => chicken.stopChickenInterval());
+
+    level1.enemies.forEach(enemie => {
+        if (enemie instanceof SmallChicken) {
+            enemie.stopSmallChickenInterval();
+        }
+    });
+}
+
+
+function stopAllCloudIntervals() {
+    level1.clouds.forEach(cloud => cloud.stopCloudInterval());
+}
+
+function stopAllCoinIntervals() {
+    level1.coins.forEach(coin => coin.stopCoinInterval());
+}
 
 
 function backToStart() {
@@ -65,42 +90,27 @@ function soundOnOff() {
 
 function infoAboutPlay() {
     document.getElementById('infoAboutPlayContainer').classList.remove('dNone');
-    // document.getElementById('cross').
 }
 
 function closeInfoContainer() {
     document.getElementById('infoAboutPlayContainer').classList.add('dNone');
 }
 
-// function toggleMusic() {
-//     const backgroundAudio = audios.find(a => a.audioName === "backgroundSound");
-
-//     if (backgroundAudio) {
-//         if (backgroundAudio.isPlaying) {
-//             pauseAudio('backgroundSound');
-//         } else {
-//             playAudio('backgroundSound');
-//         }
-
-//         // Den Status aktualisieren
-//         backgroundAudio.isPlaying = !backgroundAudio.isPlaying;
-//     }
-// }
 
 
-function likeBtn(index) {
-    let likeBtnElement = document.getElementById(`likeBtn${index}`);
-    let likeBtnSrc = likeBtnElement.src;
+// function likeBtn(index) {
+//     let likeBtnElement = document.getElementById(`likeBtn${index}`);
+//     let likeBtnSrc = likeBtnElement.src;
     
-    if (likeBtnSrc.indexOf('img/herz(3).png') !== -1) {
-        likeBtnElement.src = 'img/herz(4).png';
-        heartStates[index] = true; // Zustand auf "geliked" setzen
-    } else {
-        likeBtnElement.src = 'img/herz(3).png';
-        heartStates[index] = false; // Zustand auf "nicht geliked" setzen
-    }
-    save();
-}
+//     if (likeBtnSrc.indexOf('img/herz(3).png') !== -1) {
+//         likeBtnElement.src = 'img/herz(4).png';
+//         heartStates[index] = true; // Zustand auf "geliked" setzen
+//     } else {
+//         likeBtnElement.src = 'img/herz(3).png';
+//         heartStates[index] = false; // Zustand auf "nicht geliked" setzen
+//     }
+//     save();
+// }
 
 function fullscreen() {
     let fullscreen = document.getElementById('fullscreen');

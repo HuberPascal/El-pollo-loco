@@ -1,5 +1,8 @@
 class World {
     character = new Character();
+    chicken = new Chicken();
+    smallChicken = new SmallChicken();
+    cloud = new Cloud();
     endboss = new Endboss();
     level = level1;
     canvas;
@@ -50,7 +53,7 @@ class World {
             this.checkBottleHurtingEndboss();
             this.checkBottleIsSmashed();
             this.checkEndbossHurtCharacter();
-        }, 100);
+        }, 1000 / 60);
     }
 
 
@@ -126,7 +129,7 @@ checkThrowObjects() {
 
     coinCollision() { 
         this.level.coins.forEach((coin, index) => {
-            if(this.character.isColliding(coin)) {
+            if(this.character.isColliding(coin) && !this.character.isHurt()) {
                 this.character.collectCoin();
                 this.statusBarCoin.setPercentage(this.character.coins);
                 this.level.coins.splice(index, 1);
@@ -137,7 +140,7 @@ checkThrowObjects() {
     salsaBottleCollision() {
         if(this.salsaBottles < 100) {
             this.level.salsaBottles.forEach((salsaBottle, index) => {
-                if(this.character.isColliding(salsaBottle)) {
+                if(this.character.isColliding(salsaBottle) && !this.character.isHurt()) {
                     this.character.collectSalsaBottle();
                     this.statusBarBottles.setPercentage(this.salsaBottles);
                     this.level.salsaBottles.splice(index, 1);

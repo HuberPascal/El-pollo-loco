@@ -7,12 +7,12 @@ class Character extends MovableObject {
   };
 
     height = 300;
-    // y = 155;
     y = 130;
     speed = 6;
     coins = 0;
     salsaBottles = 0;
     timeStempOflastMovement = new Date().getTime();
+    
 
 
     IMAGES_STANDING = [
@@ -137,7 +137,6 @@ class Character extends MovableObject {
           this.playAnimation(this.IMAGES_STANDING);
           pauseAudio('walkingSound');
           pauseAudio('snoreSound');
-
         };
       }, 70);
     }
@@ -147,7 +146,7 @@ class Character extends MovableObject {
       clearInterval(this.characterKeyboardInterval);
       clearInterval(this.characterInterval);
       pauseAudio('walkingSound');
-      this.loadImages(this.IMAGES_STANDING);
+      this.playAnimation(this.IMAGES_STANDING);
   }
 
   
