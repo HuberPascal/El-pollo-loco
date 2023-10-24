@@ -1,0 +1,78 @@
+@font-face {
+    font-family: 'zabars';
+    src: url('../fonts/zabars.ttf') format('truetype');
+}
+
+@media only screen and (orientation: portrait) {
+    #rotateMessageContainer {
+        display: block;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        z-index: 999;
+    }
+}
+
+/* Smartphones */
+@media only screen and (max-width: 720px) {
+    canvas {
+        width: 100%;
+    }
+}
+
+/* Smartphones */
+@media only screen and (max-height: 480px) {
+    canvas {
+        height: 100vh;
+    }
+}
+
+@media (max-width: 1000px) {
+    #fullscreen {
+        width: 100%;
+        height: 100%;
+    }
+
+    .playBtn {
+        bottom: 15px;
+    }
+
+    .iconInfoContainer {
+        gap: 15px;
+        margin-top: 26px;
+    }
+
+    .howToPlay {
+        margin-top: 30px;
+    }
+
+}
+
+@media (min-width: 1000px) {
+    .playBtnMobile {
+        display: none;
+    }
+}
+
+@media (display-mode: fullscreen) {
+    #goTofullscreen {
+        display: none;
+    }
+
+    #exitFullscreen {
+        display: block;
+    }
+
+    .playBtn {
+        bottom: 35px;
+    }
+
+    .playBtn button {
+        font-size: 40px;
+        padding: 10px 32px;
+    }
+}
+
+

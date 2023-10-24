@@ -4,7 +4,7 @@ let keyboard;
 let isMuted = false;
 let intervalsIds = [];
 let i = 1;
-world;
+// world;
 
 
 function init() {
@@ -79,10 +79,10 @@ function soundOnOff() {
     let soundOnOffImage = document.getElementById('soundOnOff');
     let soundOnOffImageSrc = soundOnOffImage.src;
 
-    if (soundOnOffImageSrc.indexOf('img/sound-on.png') !== -1) {
-        soundOnOffImage.src = 'img/sound-off.png';
+    if (soundOnOffImageSrc.indexOf('img/icons/sound-on.png') !== -1) {
+        soundOnOffImage.src = 'img/icons/sound-off.png';
     } else {
-        soundOnOffImage.src = 'img/sound-on.png';
+        soundOnOffImage.src = 'img/icons/sound-on.png';
     }
 
     toggleMusic();

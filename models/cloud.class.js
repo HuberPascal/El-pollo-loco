@@ -4,7 +4,7 @@ class Cloud extends MovableObject {
     width = 500;
     speed = 0.15;
 
-    constructor(x, world) {
+    constructor(x) {
         super().loadImage('img/5_background/layers/4_clouds/1.png');
 
         this.x = x;

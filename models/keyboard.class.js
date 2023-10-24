@@ -79,6 +79,7 @@ class Keyboard {
         this.checkButtonsAreReleased();
     }
 
+    
     checkButtonsArePressed() {
         setTimeout(() => {
             document.getElementById('btnRight').addEventListener("touchstart", (e) => {
@@ -127,6 +128,4 @@ class Keyboard {
             });
         }, 500);
     }
-
-
 }

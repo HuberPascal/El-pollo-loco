@@ -53,102 +53,9 @@ class World {
             this.checkBottleHurtingEndboss();
             this.checkBottleIsSmashed();
             this.checkEndbossHurtCharacter();
-        }, 1000 / 60);
+        }, 1000 / 80);
     }
 
-
-
-
-checkThrowObjects() {
-    if (this.keyboard.D && !this.wasDKeyPressed && this.salsaBottleCounter > 0) {
-        if (!this.character.isDead()) {
-            this.salsaBottleCounter--;
-            this.salsaBottles -= 20;
-            this.statusBarBottles.setPercentage(this.salsaBottles);
-            let bottle = new TrowableObject(this.character.x + 100, this.character.y + 100);
-            this.throwableObjects.push(bottle);
-        }
-    }
-    this.wasDKeyPressed = this.keyboard.D;
-}
-
-
-    
-
-    checkCharacterCollidesEnemy() {
-        this.level.enemies.forEach((enemy) => {
-            if(this.characterJumpsOnTop(enemy)) {
-                playAudio('chickenHit');
-                this.enemieGetsKilled(enemy);
-            }
-            if(this.enemieCanHurtCharacter(enemy)) {
-                this.characterGetsHurt();
-            }
-        });
-    }
-
-    characterJumpsOnTop(enemy) {
-        return (
-            !this.character.isHurt() &&
-            this.character.isColliding(enemy) &&
-            this.character.isAboveGround() &&
-            this.character.speedY < 0
-        );
-    }
-
-    enemieGetsKilled(enemy) {
-        let indexEnemy = this.level.enemies.indexOf(enemy);
-        let hittedEnemy = (this.level.enemies[indexEnemy].energy = 0);
-        setTimeout(() => {
-            this.level.enemies.splice(indexEnemy, 1);
-        }, 700);
-        this.character.jump();
-    }
-
-
-    enemieCanHurtCharacter(enemy) {
-        return (
-            this.character.isColliding(enemy) &&
-            !this.character.isHurt() &&
-            !this.character.isAboveGround()
-        );
-    }
-
-    characterGetsHurt() {
-        if (!this.character.isHurt() && !this.character.isDead()) {
-            this.character.hit();       
-            this.statusBarHealth.setPercentage(this.character.energy);
-        }
-    }
-
-
-    checkCollisions() {  
-            this.coinCollision();
-            this.salsaBottleCollision();
-    }
-
-    coinCollision() { 
-        this.level.coins.forEach((coin, index) => {
-            if(this.character.isColliding(coin) && !this.character.isHurt()) {
-                this.character.collectCoin();
-                this.statusBarCoin.setPercentage(this.character.coins);
-                this.level.coins.splice(index, 1);
-            }
-        });
-    }
-
-    salsaBottleCollision() {
-        if(this.salsaBottles < 100) {
-            this.level.salsaBottles.forEach((salsaBottle, index) => {
-                if(this.character.isColliding(salsaBottle) && !this.character.isHurt()) {
-                    this.character.collectSalsaBottle();
-                    this.statusBarBottles.setPercentage(this.salsaBottles);
-                    this.level.salsaBottles.splice(index, 1);
-                }
-            });
-        }
-    }
- 
 
     draw() {
         this.clearCanvas();
@@ -216,6 +123,130 @@ checkThrowObjects() {
         mo.x = mo.x * -1;
         this.ctx.restore();
     }
+
+
+    checkThrowObjects() {
+        if (this.shouldThrowObjects()) {
+            this.salsaBottleCounter--;
+            this.salsaBottles -= 20;
+            this.statusBarBottles.setPercentage(this.salsaBottles);
+            let bottle = new TrowableObject(this.character.x + 100, this.character.y + 100);
+            this.throwableObjects.push(bottle);
+        }
+        this.wasDKeyPressed = this.keyboard.D;
+    }
+    
+    shouldThrowObjects() {
+        return (
+            this.keyboard.D &&
+            !this.wasDKeyPressed &&
+            this.salsaBottleCounter > 0 &&
+            !this.character.isHurt() &&
+            !this.character.isDead()
+        );
+    }
+    
+
+
+    
+
+    checkCharacterCollidesEnemy() {
+        this.level.enemies.forEach((enemy) => {
+            if(this.characterJumpsOnTop(enemy)) {
+                playAudio('chickenHit');
+                this.enemieGetsKilled(enemy);
+            }
+            if(this.enemieCanHurtCharacter(enemy)) {
+                this.characterGetsHurt();
+            }
+        });
+    }
+
+    characterJumpsOnTop(enemy) {
+        return (
+            !this.character.isHurt() &&
+            this.character.isColliding(enemy) &&
+            this.character.isAboveGround() &&
+            this.character.speedY < 0
+        );
+    }
+
+    enemieGetsKilled(enemy) {
+        let indexEnemy = this.level.enemies.indexOf(enemy);
+        this.level.enemies[indexEnemy].energy = 0;
+        this.removeEnemyAfterDelay(indexEnemy);
+        this.character.jump();
+    }
+
+    removeEnemyAfterDelay(indexEnemy) {
+        setTimeout(() => {
+            this.level.enemies.splice(indexEnemy, 1);
+        }, 700);
+    }
+
+
+    enemieCanHurtCharacter(enemy) {
+        return (
+            this.character.isColliding(enemy) &&
+            !this.character.isHurt() &&
+            !this.character.isAboveGround()
+        );
+    }
+
+    characterGetsHurt() {
+        if (this.shouldCharacterGetHurt()) {
+            this.character.hit();       
+            this.statusBarHealth.setPercentage(this.character.energy);
+        }
+    }
+    
+    shouldCharacterGetHurt() {
+        return !this.character.isHurt() && !this.character.isDead();
+    }
+    
+
+
+    checkCollisions() {  
+        this.coinCollision();
+        this.salsaBottleCollision();
+    }
+
+    coinCollision() { 
+        this.level.coins.forEach((coin, index) => {
+            if (this.shouldCharacterCollectCoin(coin)) {
+                this.character.collectCoin();
+                this.statusBarCoin.setPercentage(this.character.coins);
+                this.level.coins.splice(index, 1);
+            }
+        });
+    }
+    
+    shouldCharacterCollectCoin(coin) {
+        return this.character.isColliding(coin) && !this.character.isHurt();
+    }
+    
+
+    salsaBottleCollision() {
+        if (this.shouldCharacterCollectSalsaBottle()) {
+            this.level.salsaBottles.forEach((salsaBottle, index) => {
+                if (this.isCharacterCollidingAndNotHurt(salsaBottle)) {
+                    this.character.collectSalsaBottle();
+                    this.statusBarBottles.setPercentage(this.salsaBottles);
+                    this.level.salsaBottles.splice(index, 1);
+                }
+            });
+        }
+    }
+    
+    shouldCharacterCollectSalsaBottle() {
+        return this.salsaBottles < 100;
+    }
+    
+    isCharacterCollidingAndNotHurt(salsaBottle) {
+        return this.character.isColliding(salsaBottle) && !this.character.isHurt();
+    }
+    
+    
 
     checkEndboss() {
         if(this.characterReachesEndboss()) {
@@ -286,11 +317,16 @@ checkThrowObjects() {
       }
 
       clearBottle(bottle) {
-        if (bottle.isSmashed == false) {
+        if (!this.isBottleSmashed(bottle)) {
             playAudio('bottleSmashed');
         }
         bottle.isSmashed = true;
-      }
+    }
+    
+    isBottleSmashed(bottle) {
+        return bottle.isSmashed === true;
+    }
+    
 
 
       checkEndbossHurtCharacter() {

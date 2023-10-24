@@ -66,7 +66,6 @@ class Endboss extends MovableObject {
         this.loadImages(this.IMAGES_ATTACK);
         
         this.x = 3850; // endboss start position
-        // this.x = 1850; // endboss start position provisorisch
         this.animate();
     }
 
@@ -74,12 +73,7 @@ class Endboss extends MovableObject {
     animate() {
           setInterval(() => {
             if (this.isDead()) {
-                if (!this.endbossIsDead) {
-                playAudio('gameWon');
-                pauseAudio('endboss');
-                this.endbossIsDead = true;
-                characterWinScreen();
-                }
+                this.playEndbossDeathAudio();
                 this.playAnimation(this.IMAGES_DEAD);
             } else if (this.isHurt()) {
                 this.playAnimation(this.IMAGES_HURT);
@@ -94,13 +88,34 @@ class Endboss extends MovableObject {
 
 
     moveLeft() {
-        if (!this.world.character.isDead()) {
+        if (this.canMoveLeft()) {
             if (this.isAtStart()) {
                 this.cannotMove();
             } else {
                 super.endbossMoveLeft();
             }
         }
+    }
+
+    playEndbossDeathAudio() {
+        if (this.isEndbossAlive()) {
+            this.handleEndbossDeathAudio();
+        }
+    }
+
+    handleEndbossDeathAudio() {
+        playAudio('gameWon');
+        pauseAudio('endboss');
+        this.endbossIsDead = true;
+        characterWinScreen();
+    }
+
+    canMoveLeft() {
+        return !this.world.character.isDead();
+    }
+
+    isEndbossAlive() {
+        return !this.endbossIsDead;
     }
 }
 

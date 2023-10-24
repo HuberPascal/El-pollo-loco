@@ -5,7 +5,8 @@ class Level {
     coins;
     bottles;
     salsaBottles;
-    level_end_x = 3600;
+    level_end_x = 3900;
+    
     constructor(BackgroundObjects, enemies, clouds, coins, salsaBottles) {
         this.BackgroundObjects = BackgroundObjects;
         this.enemies = enemies;

@@ -21,15 +21,27 @@ class MovableObject extends DrawableObject {
 
     applyGravity() {
         setInterval(() => {
-            if(this.isAboveGround() || this.speedY > 0) {
+            if (this.shouldApplyGravity()) {
                 this.y -= this.speedY;
                 this.speedY -= this.acceleration;
-                if (this instanceof Character && this.y - this.speedY > this.ground) {
+    
+                if (this.isCharacterAboveGround()) {
                     this.speedY = (this.ground - this.y) * -1;
                 }
             }
         }, 1000 / 25);
     }
+    
+
+    shouldApplyGravity() {
+        return this.isAboveGround() || this.speedY > 0;
+    }
+
+    
+    isCharacterAboveGround() {
+        return this instanceof Character && this.y - this.speedY > this.ground;
+    }
+    
 
     isAboveGround() {
         if(this instanceof TrowableObject) { // TrowableObject should always fall
@@ -48,9 +60,6 @@ class MovableObject extends DrawableObject {
     }
 
 
-    // isCollidingTop(object) {
-    //     return 
-    // }
 
     hit() {
         playAudio('hurtSound');
@@ -62,7 +71,6 @@ class MovableObject extends DrawableObject {
             this.lastAction = new Date().getTime();
         }
     }
-
 
 
     collectCoin() {
@@ -83,10 +91,9 @@ class MovableObject extends DrawableObject {
         }
     }
 
-    // kontrolliert ob der Character verletzt wurde in der letzen 1s
     isHurt() {
-        let timepassed = new Date().getTime() - this.lastHit; // Differenz in ms
-        timepassed = timepassed / 1000; // Differenz in s
+        let timepassed = new Date().getTime() - this.lastHit; // Difference in ms
+        timepassed = timepassed / 1000; // Difference in s
         return timepassed < 2;
     }
 
@@ -104,7 +111,7 @@ class MovableObject extends DrawableObject {
         let i = this.currentImage % images.length; // let i = 7 % 6; => 1, Rest 1
         let path = images[i];
         this.img = this.imageCache[path];
-        this.currentImage++; // Inkrementierung von currentImage hinzugefügt
+        this.currentImage++;
     }
 
     characterMoveRight() {
