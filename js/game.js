@@ -4,9 +4,10 @@ let keyboard;
 let isMuted = false;
 let intervalsIds = [];
 let i = 1;
-// world;
 
-
+/**
+ * Initializes the game.
+ */
 function init() {
     // initLevel();
     keyboard = new Keyboard();
@@ -15,110 +16,145 @@ function init() {
     rotateMessage();
 }
 
-
+/**
+ * Starts the game by initializing the canvas and world.
+ */
 function startGame() {
-    canvas = document.getElementById('canvas');
+    canvas = document.getElementById("canvas");
     world = new World(canvas, keyboard);
 }
 
+/**
+ * Changes the style by manipulating the visibility of HTML elements.
+ */
 function changeStyle() {
-    document.getElementById('startscreen').classList.add('dNone');
-    document.getElementById('playBtn').classList.add('dNone');
-    document.getElementById('soundOnOff').classList.remove('dNone');
-    document.getElementById('playBtnMobile').classList.remove('dNone');
+    document.getElementById("startscreen").classList.add("dNone");
+    document.getElementById("playBtn").classList.add("dNone");
+    document.getElementById("soundOnOff").classList.remove("dNone");
+    document.getElementById("playBtnMobile").classList.remove("dNone");
 }
 
+/**
+ * Displays the game over screen when the character is dead.
+ */
 function characterIsDeadScreen() {
-    document.getElementById('gameOverScreen').classList.remove('dNone');
-    document.getElementById('backToStart').classList.remove('dNone');
-    pauseAudio('backgroundSound');
+    document.getElementById("gameOverScreen").classList.remove("dNone");
+    document.getElementById("backToStart").classList.remove("dNone");
+    pauseAudio("backgroundSound");
+    stopIsDeadIntervals();
+}
+
+/**
+ * Displays the win screen when the character wins.
+ */
+function characterWinScreen() {
+    document.getElementById("gameOverScreen").classList.remove("dNone");
+    document.getElementById("backToStart").classList.remove("dNone");
+    stopWinIntervals();
+}
+
+/**
+ * Stops intervals related to character death.
+ */
+function stopIsDeadIntervals() {
     stopAllChickenIntervals();
     stopAllCloudIntervals();
     stopAllCoinIntervals();
 }
 
-function characterWinScreen() {
-    document.getElementById('gameOverScreen').classList.remove('dNone');
-    document.getElementById('backToStart').classList.remove('dNone');
+/**
+ * Stops intervals related to winning the game.
+ */
+function stopWinIntervals() {
     stopAllChickenIntervals();
     stopAllCloudIntervals();
+    stopAllCoinIntervals();
     stopCharacterAnimation();
 }
 
-
+/**
+ * Stops the character animation interval.
+ */
 function stopCharacterAnimation() {
     world.character.stopCharacterInterval();
-  }
+}
 
-  function stopAllChickenIntervals() {
-    level1.enemies.filter(enemie => enemie instanceof Chicken)
-                  .forEach(chicken => chicken.stopChickenInterval());
+/**
+ * Stops all intervals related to chicken enemies.
+ */
+function stopAllChickenIntervals() {
+    level1.enemies.filter((enemie) => enemie instanceof Chicken).forEach((chicken) => chicken.stopChickenInterval());
 
-    level1.enemies.forEach(enemie => {
+    level1.enemies.forEach((enemie) => {
         if (enemie instanceof SmallChicken) {
             enemie.stopSmallChickenInterval();
         }
     });
 }
 
-
+/**
+ * Stops all intervals related to cloud objects.
+ */
 function stopAllCloudIntervals() {
-    level1.clouds.forEach(cloud => cloud.stopCloudInterval());
+    level1.clouds.forEach((cloud) => cloud.stopCloudInterval());
 }
 
+/**
+ * Stops all intervals related to coin objects.
+ */
 function stopAllCoinIntervals() {
-    level1.coins.forEach(coin => coin.stopCoinInterval());
+    level1.coins.forEach((coin) => coin.stopCoinInterval());
 }
 
-
+/**
+ * Reloads the page to go back to the start.
+ */
 function backToStart() {
     location.reload();
 }
 
+/**
+ * Toggles the sound on/off and updates the corresponding image.
+ */
 function soundOnOff() {
-    let soundOnOffImage = document.getElementById('soundOnOff');
+    let soundOnOffImage = document.getElementById("soundOnOff");
     let soundOnOffImageSrc = soundOnOffImage.src;
 
-    if (soundOnOffImageSrc.indexOf('img/icons/sound-on.png') !== -1) {
-        soundOnOffImage.src = 'img/icons/sound-off.png';
+    if (soundOnOffImageSrc.indexOf("img/icons/sound-on.png") !== -1) {
+        soundOnOffImage.src = "img/icons/sound-off.png";
     } else {
-        soundOnOffImage.src = 'img/icons/sound-on.png';
+        soundOnOffImage.src = "img/icons/sound-on.png";
     }
 
     toggleMusic();
 }
 
+/**
+ * Displays information about playing the game.
+ */
 function infoAboutPlay() {
-    document.getElementById('infoAboutPlayContainer').classList.remove('dNone');
+    document.getElementById("infoAboutPlayContainer").classList.remove("dNone");
 }
 
+/**
+ * Closes the information container.
+ */
 function closeInfoContainer() {
-    document.getElementById('infoAboutPlayContainer').classList.add('dNone');
+    document.getElementById("infoAboutPlayContainer").classList.add("dNone");
 }
 
-
-
-// function likeBtn(index) {
-//     let likeBtnElement = document.getElementById(`likeBtn${index}`);
-//     let likeBtnSrc = likeBtnElement.src;
-    
-//     if (likeBtnSrc.indexOf('img/herz(3).png') !== -1) {
-//         likeBtnElement.src = 'img/herz(4).png';
-//         heartStates[index] = true; // Zustand auf "geliked" setzen
-//     } else {
-//         likeBtnElement.src = 'img/herz(3).png';
-//         heartStates[index] = false; // Zustand auf "nicht geliked" setzen
-//     }
-//     save();
-// }
-
+/**
+ * Activates fullscreen mode.
+ */
 function fullscreen() {
-    let fullscreen = document.getElementById('fullscreen');
+    let fullscreen = document.getElementById("fullscreen");
     enterFullscreen(fullscreen);
 }
 
-
-
+/**
+ * Enters fullscreen mode for a given element.
+ * @param {HTMLElement} element - The element to enter fullscreen.
+ */
 function enterFullscreen(element) {
     if (element.requestFullscreen) {
         element.requestFullscreen();
@@ -129,6 +165,9 @@ function enterFullscreen(element) {
     }
 }
 
+/**
+ * Exits fullscreen mode.
+ */
 function exitFullscreen() {
     if (document.exitFullscreen) {
         document.exitFullscreen();
@@ -137,10 +176,11 @@ function exitFullscreen() {
     }
 }
 
-
-
+/**
+ * Rotates the message container based on orientation change.
+ */
 function rotateMessage() {
-    window.addEventListener("orientationchange", function() {
+    window.addEventListener("orientationchange", function () {
         if (window.matchMedia("(orientation: portrait)").matches) {
             document.getElementById("rotateMessageContainer").style.display = "block";
         } else {

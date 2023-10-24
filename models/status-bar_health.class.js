@@ -1,4 +1,11 @@
+/**
+ * Represents the status bar for the player's health, displaying its health level.
+ */
 class StatusBarHealth extends DrawableObject {
+    /**
+     * Array of image paths representing the health status bar.
+     * @type {string[]}
+     */
     IMAGES = [
         "img/7_statusbars/1_statusbar/2_statusbar_health/green/0.png", // 0
         "img/7_statusbars/1_statusbar/2_statusbar_health/green/20.png",
@@ -10,6 +17,9 @@ class StatusBarHealth extends DrawableObject {
 
     percentage = 100;
 
+    /**
+     * Constructs a StatusBarHealth object.
+     */
     constructor() {
         super();
         this.loadImages(this.IMAGES);
@@ -20,13 +30,20 @@ class StatusBarHealth extends DrawableObject {
         this.setPercentage(100);
     }
 
-    // setPercentage(50)
+    /**
+     * Sets the fill percentage of the status bar based on the given percentage.
+     * @param {number} percentage - The fill percentage to set (0 to 100).
+     */
     setPercentage(percentage) {
         this.percentage = percentage; // => 0 ... 5
         let path = this.IMAGES[this.resolveImageIndex()];
         this.img = this.imageCache[path];
     }
 
+    /**
+     * Resolves the image index based on the current fill percentage.
+     * @returns {number} - The resolved image index.
+     */
     resolveImageIndex() {
         if (this.percentage == 100) {
             return 5;
@@ -43,7 +60,3 @@ class StatusBarHealth extends DrawableObject {
         }
     }
 }
-
-
-
-

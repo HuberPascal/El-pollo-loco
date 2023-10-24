@@ -1,4 +1,7 @@
-
+/**
+ * Array containing audio configurations.
+ * @type {AudioConfig[]}
+ */
 let audios = [
     {
         audioName: "backgroundSound",
@@ -6,7 +9,7 @@ let audios = [
         loop: true,
         volume: 0.4,
         audioElement: null,
-        isPlaying: false
+        isPlaying: false,
     },
     {
         audioName: "walkingSound",
@@ -14,7 +17,7 @@ let audios = [
         loop: false,
         volume: 0.4,
         audioElement: null,
-        isPlaying: false
+        isPlaying: false,
     },
     {
         audioName: "deathSound",
@@ -22,7 +25,7 @@ let audios = [
         loop: false,
         volume: 0.4,
         audioElement: null,
-        isPlaying: false
+        isPlaying: false,
     },
     {
         audioName: "hurtSound",
@@ -30,7 +33,7 @@ let audios = [
         loop: false,
         volume: 0.4,
         audioElement: null,
-        isPlaying: false
+        isPlaying: false,
     },
     {
         audioName: "jumpSound",
@@ -38,7 +41,7 @@ let audios = [
         loop: false,
         volume: 0.4,
         audioElement: null,
-        isPlaying: false
+        isPlaying: false,
     },
     {
         audioName: "snoreSound",
@@ -46,7 +49,7 @@ let audios = [
         loop: false,
         volume: 0.4,
         audioElement: null,
-        isPlaying: false
+        isPlaying: false,
     },
     {
         audioName: "coinSound",
@@ -54,7 +57,7 @@ let audios = [
         loop: false,
         volume: 0.4,
         audioElement: null,
-        isPlaying: false
+        isPlaying: false,
     },
     {
         audioName: "bottleSmashed",
@@ -62,7 +65,7 @@ let audios = [
         loop: false,
         volume: 0.4,
         audioElement: null,
-        isPlaying: false
+        isPlaying: false,
     },
     {
         audioName: "bottleCollected",
@@ -70,7 +73,7 @@ let audios = [
         loop: false,
         volume: 0.4,
         audioElement: null,
-        isPlaying: false
+        isPlaying: false,
     },
     {
         audioName: "endboss",
@@ -78,7 +81,7 @@ let audios = [
         loop: false,
         volume: 0.4,
         audioElement: null,
-        isPlaying: false
+        isPlaying: false,
     },
     {
         audioName: "chickenHit",
@@ -86,7 +89,7 @@ let audios = [
         loop: false,
         volume: 0.4,
         audioElement: null,
-        isPlaying: false
+        isPlaying: false,
     },
     {
         audioName: "gameLost",
@@ -94,7 +97,7 @@ let audios = [
         loop: false,
         volume: 0.4,
         audioElement: null,
-        isPlaying: false
+        isPlaying: false,
     },
     {
         audioName: "gameWon",
@@ -102,14 +105,16 @@ let audios = [
         loop: false,
         volume: 0.4,
         audioElement: null,
-        isPlaying: false
-    }
-
+        isPlaying: false,
+    },
 ];
 
-
+/**
+ * Plays the specified audio.
+ * @param {string} audioName - The name of the audio to play.
+ */
 function playAudio(audioName) {
-    const audio = audios.find(a => a.audioName === audioName);
+    const audio = audios.find((a) => a.audioName === audioName);
 
     if (audio && !audio.isPlaying) {
         if (!audio.audioElement || audio.audioElement.paused) {
@@ -121,18 +126,23 @@ function playAudio(audioName) {
     }
 }
 
-
+/**
+ * Pauses the specified audio.
+ * @param {string} audioName - The name of the audio to pause.
+ */
 function pauseAudio(audioName) {
-    const audio = audios.find(a => a.audioName === audioName);
+    const audio = audios.find((a) => a.audioName === audioName);
 
     if (audio && audio.audioElement) {
         audio.audioElement.pause();
     }
 }
 
-
+/**
+ * Toggles the background music.
+ */
 function toggleMusic() {
-    const backgroundAudio = audios.find(a => a.audioName === "backgroundSound");
+    const backgroundAudio = audios.find((a) => a.audioName === "backgroundSound");
 
     if (backgroundAudio) {
         if (!backgroundAudio.isPlaying) {
@@ -145,29 +155,38 @@ function toggleMusic() {
     }
 }
 
+/**
+ * Sets the 'isPlaying' property of all audios to false.
+ */
 function setIsPlayingToFalse() {
-    audios.forEach(audio => {
+    audios.forEach((audio) => {
         audio.isPlaying = false;
     });
 }
 
+/**
+ * Sets the 'isPlaying' property of all audios to true.
+ */
 function setIsPlayingToTrue() {
-    audios.forEach(audio => {
+    audios.forEach((audio) => {
         audio.isPlaying = true;
     });
 }
 
+/**
+ * Pauses all audios.
+ */
 function allAudiosPaused() {
-    audios.forEach(audio => {
+    audios.forEach((audio) => {
         pauseAudio(audio.audioName);
     });
 }
 
+/**
+ * Plays all audios.
+ */
 function allAudiosPlay() {
-    audios.forEach(audio => {
-        playAudio('backgroundSound');
+    audios.forEach((audio) => {
+        playAudio("backgroundSound");
     });
 }
-
-
-

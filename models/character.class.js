@@ -1,3 +1,6 @@
+/**
+ * Class representing a character that extends MovableObject.
+ */
 class Character extends MovableObject {
     /**
      * Character offset values for collision detection.
@@ -17,8 +20,18 @@ class Character extends MovableObject {
     finishGame = false;
     timeStempOflastMovement = new Date().getTime();
 
-    IMAGES_STANDING = ["img/2_character_pepe/1_idle/idle/I-1.png"];
+    /**
+     * Array of standing images for the character.
+     * @type {string[]}
+     */
+    IMAGES_STANDING = [
+        "img/2_character_pepe/1_idle/idle/I-1.png"
+    ];
 
+    /**
+     * Array of walking images for the character.
+     * @type {string[]}
+     */
     IMAGES_WALKING = [
         "img/2_character_pepe/2_walk/W-21.png",
         "img/2_character_pepe/2_walk/W-22.png",
@@ -28,6 +41,10 @@ class Character extends MovableObject {
         "img/2_character_pepe/2_walk/W-26.png",
     ];
 
+    /**
+     * Array of jumping images for the character.
+     * @type {string[]}
+     */
     IMAGES_JUMPING = [
         "img/2_character_pepe/3_jump/J-31.png",
         "img/2_character_pepe/3_jump/J-32.png",
@@ -40,6 +57,10 @@ class Character extends MovableObject {
         "img/2_character_pepe/3_jump/J-39.png",
     ];
 
+    /**
+     * Array of dead images for the character.
+     * @type {string[]}
+     */
     IMAGES_DEAD = [
         "img/2_character_pepe/5_dead/D-51.png",
         "img/2_character_pepe/5_dead/D-52.png",
@@ -50,8 +71,20 @@ class Character extends MovableObject {
         "img/2_character_pepe/5_dead/D-57.png",
     ];
 
-    IMAGES_HURT = ["img/2_character_pepe/4_hurt/H-41.png", "img/2_character_pepe/4_hurt/H-42.png", "img/2_character_pepe/4_hurt/H-43.png"];
+    /**
+     * Array of hurt images for the character.
+     * @type {string[]}
+     */
+    IMAGES_HURT = [
+        "img/2_character_pepe/4_hurt/H-41.png", 
+        "img/2_character_pepe/4_hurt/H-42.png", 
+        "img/2_character_pepe/4_hurt/H-43.png"
+    ];
 
+    /**
+     * Array of sleep images for the character.
+     * @type {string[]}
+     */
     IMAGES_SLEEP = [
         "img/2_character_pepe/1_idle/long_idle/I-11.png",
         "img/2_character_pepe/1_idle/long_idle/I-12.png",
@@ -109,8 +142,7 @@ class Character extends MovableObject {
                 this.playAnimation(this.IMAGES_SLEEP);
             } else {
                 this.playAnimation(this.IMAGES_STANDING);
-                pauseAudio("walkingSound");
-                pauseAudio("snoreSound");
+                this.handleAudio();
             }
         }, 70);
     }
@@ -155,6 +187,14 @@ class Character extends MovableObject {
                 pauseAudio("jumpSound");
             }
         }
+    }
+
+    /**
+     * Handles audio playback, pausing walking and snore sounds.
+     */
+    handleAudio() {
+        pauseAudio("walkingSound");
+        pauseAudio("snoreSound");
     }
 
     /**
