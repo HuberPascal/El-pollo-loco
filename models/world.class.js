@@ -195,8 +195,7 @@ class World {
             this.statusBarBottles.setPercentage(this.salsaBottles);
             let bottle = new TrowableObject(this.character.x + 100, this.character.y + 100);
             this.throwableObjects.push(bottle);
-
-            this.lastAction = new Date().getTime();
+            this.character.lastAction = new Date().getTime();
         }
         this.wasDKeyPressed = this.keyboard.D;
     }
@@ -206,7 +205,7 @@ class World {
      * @returns {boolean} - True if the character should throw objects; otherwise, false.
      */
     shouldThrowObjects() {
-        return this.keyboard.D && !this.wasDKeyPressed && this.salsaBottleCounter > 0 && !this.character.isHurt() && !this.character.isDead();
+        return this.keyboard.D && !this.wasDKeyPressed && !world.character.otherDirection && this.salsaBottleCounter > 0 && !this.character.isHurt() && !this.character.isDead();
     }
 
     /**

@@ -78,6 +78,14 @@ class Endboss extends MovableObject {
      * Animates the end boss based on its state (dead, hurt, attacking, alarmed).
      */
     animate() {
+        this.startEndbossInterval();
+    }
+
+    /**
+     * Initiates the interval for end boss animation.
+     * Handles different end boss animations based on its state.
+     */
+    startEndbossInterval() {
         setInterval(() => {
             if (this.isDead()) {
                 this.playEndbossDeathAudio();

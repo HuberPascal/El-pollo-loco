@@ -122,10 +122,16 @@ class Character extends MovableObject {
             this.moveRight();
             this.moveLeft();
             this.characterJump();
-
             this.world.camera_x = -this.x + 100;
         }, 1000 / 60);
+        this.startCharacterInterval();
+    }
 
+    /**
+     * Initiates the interval for character animation.
+     * Handles different character animations based on game state.
+     */
+    startCharacterInterval() {
         this.characterInterval = setInterval(() => {
             if (this.isDead()) {
                 this.checkGameIsFinish();
@@ -135,7 +141,7 @@ class Character extends MovableObject {
                 this.playAnimation(this.IMAGES_HURT);
             } else if (this.isAboveGround()) {
                 this.playAnimation(this.IMAGES_JUMPING);
-            } else if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT) {
+            } else if (this.isCharacterWalking()) {
                 this.playAnimation(this.IMAGES_WALKING);
             } else if (this.isAsleep()) {
                 playAudio("snoreSound");
@@ -219,6 +225,14 @@ class Character extends MovableObject {
      */
     canJump() {
         return this.world.keyboard.SPACE && !this.isAboveGround();
+    }
+
+    /**
+     * Checks if the character is currently walking.
+     * @returns {boolean} - True if the character is moving to the right or left, otherwise false.
+     */
+    isCharacterWalking() {
+        return this.world.keyboard.RIGHT || this.world.keyboard.LEFT;
     }
 
     /**

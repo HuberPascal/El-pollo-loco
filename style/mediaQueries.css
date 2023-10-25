@@ -48,6 +48,22 @@
         margin-top: 30px;
     }
 
+    .desktopArrowUp {
+        display: none;
+    }
+
+    .mobileArrowUp {
+        display: block;
+    }
+
+    .keyboardD {
+        display: none;
+    }
+
+    .mobileThrowBottle {
+        display: block;
+    }
+
 }
 
 @media (min-width: 1000px) {

@@ -154,6 +154,16 @@ canvas {
     font-size: 35px;
 }
 
+.mobileThrowBottle {
+    display: none;
+    filter: invert(100%);
+}
+
+.mobileArrowUp {
+    display: none;
+    filter: invert(100%);
+}
+
 .howToPlay {
     text-align: center;
     font-size: 30px;
@@ -192,7 +202,7 @@ canvas {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 50px;
+    gap: 100px;
 }
 
 .playBtnMobile img {

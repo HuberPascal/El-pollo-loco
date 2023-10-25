@@ -17,7 +17,6 @@ class MovableObject extends DrawableObject {
     energy = 100;
     coins = 0;
     lastHit = 0;
-    lastAction;
     ground = 130;
     lastAction = new Date().getTime();
 
