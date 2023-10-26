@@ -12,6 +12,7 @@
         left: 0;
         right: 0;
         z-index: 999;
+        background-color: rgba(0, 0, 0, 0.5);
     }
 }
 
@@ -79,15 +80,6 @@
 
     #exitFullscreen {
         display: block;
-    }
-
-    .playBtn {
-        bottom: 35px;
-    }
-
-    .playBtn button {
-        font-size: 40px;
-        padding: 10px 32px;
     }
 }
 

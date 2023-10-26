@@ -24,6 +24,7 @@ class World {
     salsaBottleCounter = 0;
     throwableBottles = [];
     wasDKeyPressed = false;
+    lastThrowTime = 0;
 
     /**
      * Constructs a World instance.
@@ -196,6 +197,7 @@ class World {
             let bottle = new TrowableObject(this.character.x + 100, this.character.y + 100);
             this.throwableObjects.push(bottle);
             this.character.lastAction = new Date().getTime();
+            this.updateLastThrowTime();
         }
         this.wasDKeyPressed = this.keyboard.D;
     }
@@ -205,7 +207,32 @@ class World {
      * @returns {boolean} - True if the character should throw objects; otherwise, false.
      */
     shouldThrowObjects() {
-        return this.keyboard.D && !this.wasDKeyPressed && !world.character.otherDirection && this.salsaBottleCounter > 0 && !this.character.isHurt() && !this.character.isDead();
+        return (
+            this.keyboard.D &&
+            !this.wasDKeyPressed &&
+            !world.character.otherDirection &&
+            this.salsaBottleCounter > 0 &&
+            !this.character.isHurt() &&
+            !this.character.isDead() &&
+            this.lastThrowObjectsTime()
+        );
+    }
+
+    /**
+     * Checks the time elapsed since the last salsa bottle throw.
+     * @returns {boolean} - True if more than 1 second has passed since the last throw; otherwise, false.
+     */
+    lastThrowObjectsTime() {
+        let currentTime = new Date().getTime();
+        let lastThrowTime = (currentTime - this.lastThrowTime) / 1000;
+        return lastThrowTime > 1.8;
+    }
+
+    /**
+     * Updates the last throw time to the current time.
+     */
+    updateLastThrowTime() {
+        this.lastThrowTime = new Date().getTime();
     }
 
     /**

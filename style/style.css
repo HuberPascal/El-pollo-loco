@@ -107,7 +107,6 @@ canvas {
     top: 0;
     bottom: 0;
     left: 0;
-    right: 0;
     z-index: 3;
     background-image: url('../img/background_img/desert.png');
     background-size: cover;
@@ -214,8 +213,9 @@ canvas {
 }
 
 #fullscreen {
-    width: 720px;
-    height: 480px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 #exitFullscreen {
