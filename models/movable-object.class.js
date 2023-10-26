@@ -155,30 +155,43 @@ class MovableObject extends DrawableObject {
     }
 
     /**
-     * Moves the character to the right.
-     */
-    characterMoveRight() {
-        this.x += this.speed;
-        this.lastAction = new Date().getTime();
-        if (this.isAboveGround()) {
-            pauseAudio("walkingSound");
-        } else {
-            playAudio("walkingSound");
-        }
-    }
+ * Moves the character to the right.
+ */
+characterMoveRight() {
+    this.x += this.speed;
+    this.lastAction = new Date().getTime();
+    this.handleWalkingAudio();
+}
 
-    /**
-     * Moves the character to the left.
-     */
-    characterMoveLeft() {
-        this.x -= this.speed;
-        this.lastAction = new Date().getTime();
-        if (this.isAboveGround()) {
-            pauseAudio("walkingSound");
-        } else {
-            playAudio("walkingSound");
-        }
+/**
+ * Moves the character to the left.
+ */
+characterMoveLeft() {
+    this.x -= this.speed;
+    this.lastAction = new Date().getTime();
+    this.handleWalkingAudio();
+}
+
+/**
+ * Handles the audio for character movement.
+ * Pauses the walking sound if the character is above ground or hurt; otherwise, plays the walking sound.
+ */
+handleWalkingAudio() {
+    if (this.isAboveGround() || this.isMovingAndHurt()) {
+        pauseAudio("walkingSound");
+    } else {
+        playAudio("walkingSound");
     }
+}
+
+/**
+ * Checks if the character is either moving right or left and is currently hurt.
+ * @returns {boolean} True if the character is moving right or left and is hurt; otherwise, false.
+ */
+isMovingAndHurt() {
+    return (this.world.keyboard.RIGHT || this.world.keyboard.LEFT) && this.isHurt();
+}
+
 
     /**
      * Moves the object to the right.

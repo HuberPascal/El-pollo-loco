@@ -15,14 +15,16 @@ class StatusBarHealth extends DrawableObject {
         "img/7_statusbars/1_statusbar/2_statusbar_health/green/100.png", // 5
     ];
 
+    imagePath;
     percentage = 100;
 
     /**
      * Constructs a StatusBarHealth object.
      */
-    constructor() {
+    constructor(imagePath) {
         super();
         this.loadImages(this.IMAGES);
+        this.imagePath = imagePath;
         this.x = 40;
         this.y = 0;
         this.width = 200;

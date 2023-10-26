@@ -189,8 +189,6 @@ class Character extends MovableObject {
             if (!this.isDead()) {
                 this.jump();
                 playAudio("jumpSound");
-            } else {
-                pauseAudio("jumpSound");
             }
         }
     }

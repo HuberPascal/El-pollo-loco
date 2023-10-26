@@ -6,10 +6,76 @@ let intervalsIds = [];
 let i = 1;
 
 /**
+ * Preloads images asynchronously.
+ * @param {Array} images - An array of BackgroundObject instances.
+ * @param {Function} [callback] - An optional callback function to be executed when all images are loaded.
+ */
+function preloadImages(images, callback) {
+    let loadedImages = 0;
+    const numImages = images.length;
+
+    images.forEach((bgObj) => {
+        const img = new Image();
+        img.onload = function () {
+            loadedImages++;
+            if (loadedImages === numImages && callback) {
+                callback();
+            }
+        };
+        img.src = bgObj.imagePath;
+    });
+}
+
+/**
+ * An array of background objects to preload.
+ * @type {Array<BackgroundObject>}
+ */
+const backgroundObjects = [
+    new BackgroundObject("img/5_background/layers/air.png"),
+    new BackgroundObject("img/5_background/layers/3_third_layer/2.png"),
+    new BackgroundObject("img/5_background/layers/2_second_layer/2.png"),
+    new BackgroundObject("img/5_background/layers/1_first_layer/2.png"),
+
+    new BackgroundObject("img/5_background/layers/air.png"),
+    new BackgroundObject("img/5_background/layers/3_third_layer/1.png"),
+    new BackgroundObject("img/5_background/layers/2_second_layer/1.png"),
+    new BackgroundObject("img/5_background/layers/1_first_layer/1.png"),
+];
+/**
+ * An array of statusBarBottle object to preload.
+ * @type {Array<BackgroundObject>}
+ */
+const statusBarBottle = [
+    new StatusBarBottle("img/7_statusbars/1_statusbar/3_statusbar_bottle/orange/0.png")
+]
+/**
+ * An array of StatusBarCoin object to preload.
+ * @type {Array<BackgroundObject>}
+ */
+const statusBarCoin = [
+    new StatusBarCoin("img/7_statusbars/1_statusbar/1_statusbar_coin/blue/0.png")
+]
+/**
+ * An array of statusBarHealth object to preload.
+ * @type {Array<BackgroundObject>}
+ */
+const statusBarHealth = [
+    new StatusBarHealth("img/7_statusbars/1_statusbar/2_statusbar_health/green/0.png")
+]
+
+/**
+ * Preload the background images.
+ */
+preloadImages(backgroundObjects);
+preloadImages(statusBarHealth);
+preloadImages(statusBarCoin);
+preloadImages(statusBarBottle);
+
+/**
  * Initializes the game.
  */
 function init() {
-    // initLevel();
+    initLevel();
     keyboard = new Keyboard();
     startGame();
     changeStyle();

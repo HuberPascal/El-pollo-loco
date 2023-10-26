@@ -5,9 +5,10 @@ class Keyboard {
     LEFT = false;
     RIGHT = false;
     UP = false;
-    DOWN = false;
     SPACE = false;
     D = false;
+
+    isSpacePressed = true;
 
     /**
      * Constructor for the Keyboard class.
@@ -43,12 +44,15 @@ class Keyboard {
                 keyboard.UP = true;
             }
 
-            if (e.keyCode == 40) {
-                keyboard.DOWN = true;
-            }
-
             if (e.keyCode == 32) {
-                keyboard.SPACE = true;
+                if (this.isSpacePressed) {
+                    keyboard.SPACE = true;
+                }
+
+                setTimeout(() => {
+                    keyboard.SPACE = false;
+                }, 500);
+                this.isSpacePressed = false;
             }
 
             if (e.keyCode == 68) {
@@ -74,12 +78,9 @@ class Keyboard {
                 this.UP = false;
             }
 
-            if (e.keyCode == 40) {
-                this.DOWN = false;
-            }
-
             if (e.keyCode == 32) {
                 this.SPACE = false;
+                this.isSpacePressed = true;
             }
 
             if (e.keyCode == 68) {
@@ -101,25 +102,41 @@ class Keyboard {
      */
     checkButtonsArePressed() {
         setTimeout(() => {
-            document.getElementById("btnRight").addEventListener("touchstart", (e) => {
-                e.preventDefault();
-                this.RIGHT = true;
-            });
+            document.getElementById("btnRight").addEventListener(
+                "touchstart",
+                (e) => {
+                    e.preventDefault();
+                    this.RIGHT = true;
+                },
+                { passive: false }
+            );
 
-            document.getElementById("btnLeft").addEventListener("touchstart", (e) => {
-                e.preventDefault();
-                this.LEFT = true;
-            });
+            document.getElementById("btnLeft").addEventListener(
+                "touchstart",
+                (e) => {
+                    e.preventDefault();
+                    this.LEFT = true;
+                },
+                { passive: false }
+            );
 
-            document.getElementById("btnJump").addEventListener("touchstart", (e) => {
-                e.preventDefault();
-                this.SPACE = true;
-            });
+            document.getElementById("btnJump").addEventListener(
+                "touchstart",
+                (e) => {
+                    e.preventDefault();
+                    this.SPACE = true;
+                },
+                { passive: false }
+            );
 
-            document.getElementById("btnThrow").addEventListener("touchstart", (e) => {
-                e.preventDefault();
-                this.D = true;
-            });
+            document.getElementById("btnThrow").addEventListener(
+                "touchstart",
+                (e) => {
+                    e.preventDefault();
+                    this.D = true;
+                },
+                { passive: false }
+            );
         }, 500);
     }
 

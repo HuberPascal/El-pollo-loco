@@ -15,16 +15,18 @@ class StatusBarBottle extends DrawableObject {
         "img/7_statusbars/1_statusbar/3_statusbar_bottle/orange/100.png",
     ];
 
+    imagePath;
     percentage = 0;
 
     /**
      * Constructs a StatusBarBottle object.
      */
-    constructor() {
+    constructor(imagePath) {
         super();
         this.loadImages(this.IMAGES_BOTTLE);
+        this.imagePath = imagePath;
         this.x = 40;
-        this.y = 100;
+        this.y = 100;     
         this.width = 200;
         this.height = 60;
         this.setPercentage(0);

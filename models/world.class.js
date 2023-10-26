@@ -68,7 +68,7 @@ class World {
             this.checkBottleHurtingEndboss();
             this.checkBottleIsSmashed();
             this.checkEndbossHurtCharacter();
-        }, 1000 / 80);
+        }, 1000 / 100);
     }
 
     /**
@@ -225,7 +225,7 @@ class World {
     lastThrowObjectsTime() {
         let currentTime = new Date().getTime();
         let lastThrowTime = (currentTime - this.lastThrowTime) / 1000;
-        return lastThrowTime > 1.8;
+        return lastThrowTime > 1.5;
     }
 
     /**

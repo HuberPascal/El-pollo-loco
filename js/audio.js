@@ -117,24 +117,35 @@ function playAudio(audioName) {
     const audio = audios.find((a) => a.audioName === audioName);
 
     if (audio && !audio.isPlaying) {
-        if (!audio.audioElement || audio.audioElement.paused) {
-            audio.audioElement = new Audio(audio.src);
-            audio.audioElement.loop = audio.loop;
-            audio.audioElement.volume = audio.volume;
+        if (!audio.audioElement || audio.audioElement.paused || audio.audioElement.ended) {
+            if (audio.audioElement) {
+                audio.audioElement.pause();
+                audio.audioElement.currentTime = 0;
+            } else {
+                audio.audioElement = new Audio(audio.src);
+                audio.audioElement.loop = audio.loop;
+                audio.audioElement.volume = audio.volume;
+            }
+
+            audio.audioElement.removeEventListener("ended", onAudioEnded);
+            audio.audioElement.addEventListener("ended", onAudioEnded);
+
             audio.audioElement.play();
         }
     }
 }
 
-/**
- * Pauses the specified audio.
- * @param {string} audioName - The name of the audio to pause.
- */
+function onAudioEnded() {
+    this.currentTime = 0;
+    this.pause();
+}
+
 function pauseAudio(audioName) {
     const audio = audios.find((a) => a.audioName === audioName);
 
     if (audio && audio.audioElement) {
         audio.audioElement.pause();
+        audio.audioElement.currentTime = 0;
     }
 }
 

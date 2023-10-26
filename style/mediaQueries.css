@@ -3,33 +3,6 @@
     src: url('../fonts/zabars.ttf') format('truetype');
 }
 
-@media only screen and (orientation: portrait) {
-    #rotateMessageContainer {
-        display: block;
-        position: absolute;
-        top: 0;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        z-index: 999;
-        background-color: rgba(0, 0, 0, 0.5);
-    }
-}
-
-/* Smartphones */
-@media only screen and (max-width: 720px) {
-    canvas {
-        width: 100%;
-    }
-}
-
-/* Smartphones */
-@media only screen and (max-height: 480px) {
-    canvas {
-        height: 100vh;
-    }
-}
-
 @media (max-width: 1000px) {
     #fullscreen {
         width: 100%;
@@ -83,4 +56,76 @@
     }
 }
 
+@media only screen and (orientation: portrait) and (max-width: 600px) {
+    #rotateMessageContainer {
+        display: block;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        z-index: 999;
+        background-color: rgba(0, 0, 0, 0.5);
+    }
+}
+
+@media only screen and (orientation: portrait) and (max-width: 520px) {
+    .playBtn {
+        bottom: 10px;
+    }
+
+    .playBtn button {
+        padding: 4px 20px;
+    }
+
+    .infoBar img {
+        width: 30px;
+        height: 30px;
+    }
+}
+
+@media only screen and (orientation: portrait) and (max-width: 450px) {
+    .playBtn {
+        bottom: 10px;
+    }
+
+    .playBtn button {
+        padding: 2px 20px;
+    }
+
+    .infoBar img {
+        width: 26px;
+        height: 26px;
+    }
+}
+
+@media only screen and (orientation: portrait) and (max-width: 400px) {
+    .playBtn {
+        bottom: 6px;
+    }
+
+    .playBtn button {
+        padding: 2px 16px;
+    }
+
+    .infoBar img {
+        width: 26px;
+        height: 26px;
+    }
+}
+
+
+/* Smartphones */
+@media only screen and (max-width: 720px) {
+    canvas {
+        width: 100%;
+    }
+}
+
+/* Smartphones */
+@media only screen and (max-height: 480px) {
+    canvas {
+        height: 100vh;
+    }
+}
 
