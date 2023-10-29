@@ -225,7 +225,7 @@ class World {
     lastThrowObjectsTime() {
         let currentTime = new Date().getTime();
         let lastThrowTime = (currentTime - this.lastThrowTime) / 1000;
-        return lastThrowTime > 1.5;
+        return lastThrowTime > 1.8;
     }
 
     /**

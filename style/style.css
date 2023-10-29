@@ -201,7 +201,8 @@ canvas {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 100px;
+    gap: 80px;
+    margin: 0 20px;
 }
 
 .playBtnMobile img {

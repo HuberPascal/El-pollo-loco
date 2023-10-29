@@ -41,6 +41,7 @@ const backgroundObjects = [
     new BackgroundObject("img/5_background/layers/2_second_layer/1.png"),
     new BackgroundObject("img/5_background/layers/1_first_layer/1.png"),
 ];
+
 /**
  * An array of statusBarBottle object to preload.
  * @type {Array<BackgroundObject>}
@@ -48,6 +49,7 @@ const backgroundObjects = [
 const statusBarBottle = [
     new StatusBarBottle("img/7_statusbars/1_statusbar/3_statusbar_bottle/orange/0.png")
 ]
+
 /**
  * An array of StatusBarCoin object to preload.
  * @type {Array<BackgroundObject>}
@@ -55,6 +57,7 @@ const statusBarBottle = [
 const statusBarCoin = [
     new StatusBarCoin("img/7_statusbars/1_statusbar/1_statusbar_coin/blue/0.png")
 ]
+
 /**
  * An array of statusBarHealth object to preload.
  * @type {Array<BackgroundObject>}
