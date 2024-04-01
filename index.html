@@ -1,110 +1,175 @@
 <!DOCTYPE html>
 <html lang="en" translate="no">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link rel="stylesheet" href="style/style.css" />
-        <link rel="stylesheet" href="style/mediaQueries.css" />
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style/style.css" />
+    <link rel="stylesheet" href="style/mediaQueries.css" />
 
-        <title>El pollo loco</title>
-        <link rel="icon" type="image/x-icon" href="img/3_enemies_chicken/chicken_normal/1_walk/1_w.png" />
-    </head>
-    <body>
-        <div id="fullscreen">
-            <div id="content" class="borderRadius">
-                <div id="startscreen" class="borderRadius">
-                    <img src="img/9_intro_outro_screens/start/startscreen_1.png" alt="Start Screen" />
-                </div>
-                <div id="playBtn" class="playBtn">
-                    <button onclick="init()">Play</button>
-                </div>
-                <div id="backToStart" class="playBtn dNone">
-                    <button onclick="backToStart()">To Start</button>
-                </div>
-                <div id="gameOverScreen" class="dNone">
-                    <img src="img/9_intro_outro_screens/game_over/game over.png" alt="Game Over Screen" />
-                </div>
-                <div id="rotateMessageContainer" class="dNone">
-                    <p id="rotateMessage">Please rotate your device by 90 degrees</p>
-                </div>
-
-                <div id="infoAboutPlayContainer" class="dNone">
-                    <img onclick="closeInfoContainer()" class="cross iconHover" src="img/icons/close.png" alt="Close Icon" />
-                    <div class="iconInfoContainer">
-                        <div class="playerCharacter">
-                            <span>Walk Left</span>
-                            <img src="img/icons/arrow-left-white.png" alt="Arrow Left Icon" />
-                        </div>
-                        <div class="playerCharacter">
-                            <span>Walk Rigth</span>
-                            <img src="img/icons/arrow-right-white.png" alt="Arrow Right Icon" />
-                        </div>
-                        <div class="playerCharacter">
-                            <span>Jump</span>
-                            <img class="desktopArrowUp" src="img/icons/space.png" alt="Space Key Icon" />
-                            <img class="mobileArrowUp" src="img/icons/arrow-up-black.png" alt="Arrow Up Icon" />
-                        </div>
-                        <div class="playerCharacter">
-                            <span>Throw Bottle</span>
-                            <div class="keyboardD">D</div>
-                            <div class="mobileThrowBottle">
-                                <img src="img/icons/bottle-throw.png" alt="Throw Bottle Icon" />
-                            </div>
-                        </div>
-                    </div>
-                    <div class="howToPlay">Defeat the endboss with collected bottles, conserve them wisely. Watch out for incoming chickens. Good luck!</div>
-                </div>
-
-                <div class="infoBar">
-                    <img onclick="soundOnOff()" id="soundOnOff" class="dNone iconHover" src="img/icons/sound-on.png" alt="Sound On Icon" />
-                    <img onclick="infoAboutPlay()" src="img/icons/question-mark.png" class="iconHover iconLeft" alt="Question Mark Icon" />
-                    <img onclick="fullscreen()" id="goTofullscreen" class="iconHover iconRight" src="img/icons/fullscreen.png" alt="Fullscreen Icon" />
-                    <img onclick="exitFullscreen()" id="exitFullscreen" class="iconHover" src="img/icons/fullscreen.png" alt="Exit Fullscreen Icon" />
-                </div>
-
-                <div id="playBtnMobile" class="playBtnMobile dNone">
-                    <div class="playBtnMobileSection">
-                        <div id="btnLeft">
-                            <img src="img/icons/arrow-left-black.png" alt="Mobile Arrow Left Icon" />
-                        </div>
-                        <div id="btnRight">
-                            <img src="img/icons/arrow-right-black.png" alt="Mobile Arrow Right Icon" />
-                        </div>
-                    </div>
-                    <div class="playBtnMobileSection">
-                        <div id="btnJump">
-                            <img id="" src="img/icons/arrow-up-black.png" alt="Mobile Arrow Up Icon" />
-                        </div>
-                        <div id="btnThrow">
-                            <img src="img/icons/bottle-throw.png" alt="Mobile Bottle Throw Icon" />
-                        </div>
-                    </div>
-                </div>
-                <canvas id="canvas" width="720" height="480"></canvas>
-            </div>
+    <title>El pollo loco</title>
+    <link
+      rel="icon"
+      type="image/x-icon"
+      href="img/3_enemies_chicken/chicken_normal/1_walk/1_w.png"
+    />
+  </head>
+  <body>
+    <div id="fullscreen">
+      <div id="content" class="borderRadius">
+        <div id="startscreen" class="borderRadius">
+          <img
+            src="img/9_intro_outro_screens/start/startscreen_1.png"
+            alt="Start Screen"
+          />
+        </div>
+        <div id="playBtn" class="playBtn">
+          <button onclick="init()">Play</button>
+        </div>
+        <div id="backToStart" class="playBtn dNone">
+          <button onclick="backToStart()">To Start</button>
+        </div>
+        <div id="gameOverScreen" class="dNone">
+          <img
+            src="img/9_intro_outro_screens/game_over/game over.png"
+            alt="Game Over Screen"
+          />
+        </div>
+        <div id="rotateMessageContainer" class="dNone">
+          <p id="rotateMessage">Please rotate your device by 90 degrees</p>
         </div>
 
-        <script src="models/drawable-object.class.js"></script>
-        <script src="models/movable-object.class.js"></script>
-        <script src="models/character.class.js"></script>
-        <script src="models/chicken.class.js"></script>
-        <script src="models/chickenSmall.class.js"></script>
-        <script src="models/cloud.class.js"></script>
-        <script src="models/throwable-object.class.js"></script>
-        <script src="models/backgroundObject.class.js"></script>
-        <script src="models/status-bar_health.class.js"></script>
-        <script src="models/status_bar_bottle.class.js"></script>
-        <script src="models/status_bar_coin.class.js"></script>
-        <script src="models/status_bar_endboss.class.js"></script>
-        <script src="models/status_bar_endboss_heart.class.js"></script>
-        <script src="models/coin.class.js"></script>
-        <script src="models/salsaBottle.class.js"></script>
-        <script src="models/world.class.js"></script>
-        <script src="models/keyboard.class.js"></script>
-        <script src="models/endboss.class.js"></script>
-        <script src="models/level.class.js"></script>
-        <script src="levels/level1.js"></script>
-        <script src="js/audio.js"></script>
-        <script src="js/game.js"></script>
-    </body>
+        <div id="infoAboutPlayContainer" class="dNone">
+          <img
+            onclick="closeInfoContainer()"
+            class="cross iconHover"
+            src="img/icons/close_black.png"
+            alt="Close Icon"
+          />
+          <div class="iconInfoContainer">
+            <div class="playerCharacter">
+              <span>Walk Left</span>
+              <img src="img/icons/arrow-left-black.png" alt="Arrow Left Icon" />
+            </div>
+            <div class="playerCharacter">
+              <span>Walk Rigth</span>
+              <img
+                src="img/icons/arrow-right-black.png"
+                alt="Arrow Right Icon"
+              />
+            </div>
+            <div class="playerCharacter">
+              <span>Jump</span>
+              <img
+                class="desktopArrowUp invert"
+                src="img/icons/space.png"
+                alt="Space Key Icon"
+              />
+              <img
+                class="mobileArrowUp"
+                src="img/icons/arrow-up-black.png"
+                alt="Arrow Up Icon"
+              />
+            </div>
+            <div class="playerCharacter">
+              <span>Throw Bottle</span>
+              <div class="keyboardD">D</div>
+              <div class="mobileThrowBottle">
+                <img src="img/icons/bottle-throw.png" alt="Throw Bottle Icon" />
+              </div>
+            </div>
+          </div>
+          <div class="howToPlay">
+            Defeat the endboss with collected bottles, conserve them wisely.
+            Watch out for incoming chickens. Good luck!
+          </div>
+        </div>
+
+        <div class="infoBar">
+          <img
+            onclick="soundOnOff()"
+            id="soundOnOff"
+            class="dNone iconHover"
+            src="img/icons/sound-on.png"
+            alt="Sound On Icon"
+          />
+          <img
+            onclick="infoAboutPlay()"
+            src="img/icons/question-mark.png"
+            class="iconHover iconLeft"
+            alt="Question Mark Icon"
+          />
+          <img
+            onclick="fullscreen()"
+            id="goTofullscreen"
+            class="iconHover iconRight"
+            src="img/icons/fullscreen.png"
+            alt="Fullscreen Icon"
+          />
+          <img
+            onclick="exitFullscreen()"
+            id="exitFullscreen"
+            class="iconHover"
+            src="img/icons/fullscreen.png"
+            alt="Exit Fullscreen Icon"
+          />
+        </div>
+
+        <div id="playBtnMobile" class="playBtnMobile dNone">
+          <div class="playBtnMobileSection">
+            <div id="btnLeft">
+              <img
+                src="img/icons/arrow-left-black.png"
+                alt="Mobile Arrow Left Icon"
+              />
+            </div>
+            <div id="btnRight">
+              <img
+                src="img/icons/arrow-right-black.png"
+                alt="Mobile Arrow Right Icon"
+              />
+            </div>
+          </div>
+          <div class="playBtnMobileSection">
+            <div id="btnJump">
+              <img
+                id=""
+                src="img/icons/arrow-up-black.png"
+                alt="Mobile Arrow Up Icon"
+              />
+            </div>
+            <div id="btnThrow">
+              <img
+                src="img/icons/bottle-throw.png"
+                alt="Mobile Bottle Throw Icon"
+              />
+            </div>
+          </div>
+        </div>
+        <canvas id="canvas" width="720" height="480"></canvas>
+      </div>
+    </div>
+
+    <script src="models/drawable-object.class.js"></script>
+    <script src="models/movable-object.class.js"></script>
+    <script src="models/character.class.js"></script>
+    <script src="models/chicken.class.js"></script>
+    <script src="models/chickenSmall.class.js"></script>
+    <script src="models/cloud.class.js"></script>
+    <script src="models/throwable-object.class.js"></script>
+    <script src="models/backgroundObject.class.js"></script>
+    <script src="models/status-bar_health.class.js"></script>
+    <script src="models/status_bar_bottle.class.js"></script>
+    <script src="models/status_bar_coin.class.js"></script>
+    <script src="models/status_bar_endboss.class.js"></script>
+    <script src="models/status_bar_endboss_heart.class.js"></script>
+    <script src="models/coin.class.js"></script>
+    <script src="models/salsaBottle.class.js"></script>
+    <script src="models/world.class.js"></script>
+    <script src="models/keyboard.class.js"></script>
+    <script src="models/endboss.class.js"></script>
+    <script src="models/level.class.js"></script>
+    <script src="levels/level1.js"></script>
+    <script src="js/audio.js"></script>
+    <script src="js/game.js"></script>
+  </body>
 </html>

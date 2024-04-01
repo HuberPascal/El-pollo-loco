@@ -1,241 +1,245 @@
 body {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    width: 100vw;
-    min-height: 100vh;
-    margin: 0;
-    background-image: url('../img/background_img/desert.png');
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    font-family: 'zabars', 'Arial', 'Helvetica', sans-serif;
-    overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 100vw;
+  min-height: 100vh;
+  margin: 0;
+  background-image: url("../img/background_img/desert.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  font-family: "zabars", "Arial", "Helvetica", sans-serif;
+  overflow: hidden;
 }
 
 h1 {
-    font-size: 64px;
-    letter-spacing: 3px;
-    text-shadow: 4px 2px 8px rgba(0, 0, 0, 0.5);
+  font-size: 64px;
+  letter-spacing: 3px;
+  text-shadow: 4px 2px 8px rgba(0, 0, 0, 0.5);
 }
 
 canvas {
-    background-color: black;
-    display: block;
-    width: 100%;
-    height: 100%;
-} 
+  background-color: black;
+  display: block;
+  width: 100%;
+  height: 100%;
+}
 
 #content {
-    position: relative;
-    overflow: hidden;
-    max-width: 100%;
+  position: relative;
+  overflow: hidden;
+  max-width: 100%;
 }
 
 #startscreen {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
 }
 
 #startscreen img {
-    width: 100%;
-    height: 100%;
+  width: 100%;
+  height: 100%;
 }
 
 #gameOverScreen {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    z-index: 1;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 1;
 }
 
 #gameOverScreen img {
-    width: 100%;
-    height: 100%;
+  width: 100%;
+  height: 100%;
 }
 
 .borderRadius {
-    border-radius: 16px;
+  border-radius: 16px;
 }
 
 .playBtn {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    bottom: 20px;
-    z-index: 2;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 20px;
+  z-index: 2;
 }
 
 .playBtn button {
-    padding: 5px 20px;
-    border-radius: 10px;
-    background-color: #FFAE00;
-    font-size: 20px;
-    border: none;
-    box-shadow: 0 0 2px 2px black;
-    cursor: pointer;
-    transition: transform 0.02s ease-in;
-    color: black;
+  padding: 5px 20px;
+  border-radius: 10px;
+  background-color: #ffae00;
+  font-size: 20px;
+  border: none;
+  box-shadow: 0 0 2px 2px black;
+  cursor: pointer;
+  transition: transform 0.02s ease-in;
+  color: black;
 }
 
 .playBtn button:hover {
-    transform: scale(1.2);
+  transform: scale(1.2);
 }
 
 .infoBar {
-    position: absolute;
-    top: 16px;
-    right: 24px;
-    display: flex;
-    gap: 20px;
+  position: absolute;
+  top: 16px;
+  right: 24px;
+  display: flex;
+  gap: 20px;
 }
 
 .infoBar img {
-    width: 35px;
-    height: 35px;
-    cursor: pointer;
+  width: 35px;
+  height: 35px;
+  cursor: pointer;
 }
 
 #infoAboutPlayContainer {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    z-index: 3;
-    background-image: url('../img/background_img/desert.png');
-    background-size: cover;
-    background-repeat: no-repeat;
-    width: 101%;
-    height: 100%;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 3;
+  background-image: url("../img/background_img/wueste.webp");
+  background-size: cover;
+  background-repeat: no-repeat;
+  width: 101%;
+  height: 100%;
 }
 
 .iconInfoContainer {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    gap: 20px;
-    width: 100%;
-    color: #fff;
-    margin-top: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+  color: black;
+  margin-top: 100px;
 }
 
 .iconInfoContainer img {
-    width: 30px;
-    height: 30px;
+  width: 30px;
+  height: 30px;
+}
+
+.invert {
+  filter: invert(100%);
 }
 
 .iconLeft {
-    scale: 1.6;
+  scale: 1.6;
 }
 
 .playerCharacter {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 300px;
-    gap: 100px;
-    font-size: 30px;
-    letter-spacing: 1px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 300px;
+  gap: 100px;
+  font-size: 30px;
+  letter-spacing: 1px;
 }
 
 .keyboardD {
-    width: 30px;
-    height: 30px;
-    display: flex;
-    justify-content: center;
-    font-size: 35px;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  font-size: 35px;
 }
 
 .mobileThrowBottle {
-    display: none;
-    filter: invert(100%);
+  display: none;
+  filter: invert(100%);
 }
 
 .mobileArrowUp {
-    display: none;
-    filter: invert(100%);
+  display: none;
+  filter: invert(100%);
 }
 
 .howToPlay {
-    text-align: center;
-    font-size: 30px;
-    padding: 0 50px;
-    color: #fff;
-    margin-top: 70px;
-    letter-spacing: 1px;
+  text-align: center;
+  font-size: 30px;
+  padding: 0 50px;
+  color: black;
+  margin-top: 70px;
+  letter-spacing: 1px;
 }
 
 .cross {
-    width: 35px;
-    height: 35px;
-    position: absolute;
-    right: 24px;
-    top: 24px;
-    cursor: pointer;
+  width: 35px;
+  height: 35px;
+  position: absolute;
+  right: 24px;
+  top: 24px;
+  cursor: pointer;
 }
 
 .playBtnMobile {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
-    margin: 0 20px 20px 20px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin: 0 20px 20px 20px;
 }
 
 .playBtnMobile img {
-    width: 35px;
-    height: 35px;
+  width: 35px;
+  height: 35px;
 }
 
 .playBtnMobileSection {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 80px;
-    margin: 0 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 80px;
+  margin: 0 20px;
 }
 
 .playBtnMobile img {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 .dNone {
-    display: none;
+  display: none;
 }
 
 #fullscreen {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 #exitFullscreen {
-    display: none;
+  display: none;
 }
 
 .iconHover:hover {
-    transform: scale(1.2);
+  transform: scale(1.2);
 }
 
 #rotateMessage {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background: linear-gradient(45deg, #FFD700, #FF6347);
-    padding: 10px 30px;
-    border-radius: 30px;
-    font-size: 20px;
-    white-space: nowrap;
-    letter-spacing: 1px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: linear-gradient(45deg, #ffd700, #ff6347);
+  padding: 10px 30px;
+  border-radius: 30px;
+  font-size: 20px;
+  white-space: nowrap;
+  letter-spacing: 1px;
 }
